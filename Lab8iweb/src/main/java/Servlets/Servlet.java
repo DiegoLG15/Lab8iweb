@@ -20,7 +20,7 @@ public class Servlet extends HttpServlet {
         String accion = request.getParameter("accion");
         RequestDispatcher view;
         HeroeDao heroeDao = new HeroeDao();
-        Heroe heroe;
+        Heroe heroe= new Heroe();
         String idHeroe;
 
         switch (accion) {
@@ -34,7 +34,21 @@ public class Servlet extends HttpServlet {
                 view = request.getRequestDispatcher("heroe.jsp");
                 view.forward(request, response);
                 break;
+            case "guardar":
 
+                heroe.setNombre(request.getParameter("Nombres"));
+                usuarios.setApellidos(request.getParameter("Apellidos"));
+                usuarios.setCorreoPucp(request.getParameter("Correo PUCP"));
+                usuarios.setDni(request.getParameter("DNI"));
+                usuarios.setCelular(request.getParameter("Celular"));
+                usuarios.setCategorias(request.getParameter("Categoría"));
+                usuarios.setRol(request.getParameter("Rol"));
+                usuarios.setCodigoPucp(request.getParameter("Codigo"));
+
+                daoUsuarios.guardarUsuario(usuarios);
+
+                response.sendRedirect(request.getContextPath()+"/AdminServlet");
+                break;
             case "editarHeroe":
                 idHeroe = request.getParameter("id");
                 heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroe) );
