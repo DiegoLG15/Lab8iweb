@@ -36,18 +36,19 @@ public class Servlet extends HttpServlet {
                 break;
             case "guardar":
 
+                heroe.setIdHeroe(Integer.parseInt("idHeroe"));
                 heroe.setNombre(request.getParameter("Nombres"));
-                usuarios.setApellidos(request.getParameter("Apellidos"));
-                usuarios.setCorreoPucp(request.getParameter("Correo PUCP"));
-                usuarios.setDni(request.getParameter("DNI"));
-                usuarios.setCelular(request.getParameter("Celular"));
-                usuarios.setCategorias(request.getParameter("Categoría"));
-                usuarios.setRol(request.getParameter("Rol"));
-                usuarios.setCodigoPucp(request.getParameter("Codigo"));
+                heroe.setEdad(Integer.parseInt(request.getParameter("Edad")));
+                heroe.setNivel(Integer.parseInt(request.getParameter("Correo PUCP")));
+                heroe.setPuntosDeExperiencia(Double.parseDouble(request.getParameter("DNI")));
+                heroe.setPareja(request.getParameter("Celular"));
+                heroe.setGenero(request.getParameter("Categoría"));
+                heroe.setClase(request.getParameter("Rol"));
+                heroe.setAtaque(Integer.parseInt(request.getParameter("Codigo")));
 
-                daoUsuarios.guardarUsuario(usuarios);
+                heroeDao.guardarHeroe(heroe);
 
-                response.sendRedirect(request.getContextPath()+"/AdminServlet");
+                response.sendRedirect(request.getContextPath()+"/MenuServlet");
                 break;
             case "editarHeroe":
                 idHeroe = request.getParameter("id");
