@@ -3,6 +3,7 @@ package Daos;
 import Beans.Heroe;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 public class HeroeDao {
 
@@ -30,7 +31,21 @@ public class HeroeDao {
                 heroe.setNombre(rs.getString(2));
                 heroe.setEdad(rs.getInt(3));
                 heroe.setNivel(rs.getInt(  4));
-                heroe.setPuntosDeExperiencia(rs.getInt(5));
+                int nivel=heroe.getNivel();
+                DecimalFormat numeroFormateado = new DecimalFormat("#.00");
+                if(nivel>0 && nivel<=15){
+                    double puntos=Math.pow(nivel,3) *  (24+(nivel+1.0)/3.0)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }else if (nivel>=16 && nivel<=35){
+                    double puntos=Math.pow(nivel,3) *  (14+nivel)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }else if (nivel>=36 && nivel<=100){
+                    double puntos=Math.pow(nivel,3) *  (32+nivel/2)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }
                 heroe.setPareja(rs.getString(6));
                 heroe.setGenero(rs.getString(7));
                 heroe.setClase(rs.getString(8));
@@ -102,7 +117,7 @@ public class HeroeDao {
             pstmt.setString(2,heroe.getNombre());
             pstmt.setInt(3,heroe.getEdad());
             pstmt.setInt(4,heroe.getNivel());
-            pstmt.setInt(5,heroe.getPuntosDeExperiencia());
+            pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
             pstmt.setString(6,heroe.getPareja());
             pstmt.setString(7,heroe.getGenero());
             pstmt.setString(8,heroe.getClase());

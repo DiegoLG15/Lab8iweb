@@ -5,7 +5,7 @@ public class Heroe {
     private String nombre;
     private int edad;
     private int nivel;
-    private int puntosDeExperiencia;
+    private double puntosDeExperiencia;
     private String pareja;
     private String genero;
     private String clase;
@@ -43,11 +43,11 @@ public class Heroe {
         this.nivel = nivel;
     }
 
-    public int getPuntosDeExperiencia() {
+    public double getPuntosDeExperiencia() {
         return puntosDeExperiencia;
     }
 
-    public void setPuntosDeExperiencia(int puntosDeExperiencia) {
+    public void setPuntosDeExperiencia(double puntosDeExperiencia) {
         this.puntosDeExperiencia = puntosDeExperiencia;
     }
 

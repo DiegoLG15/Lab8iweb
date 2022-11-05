@@ -127,20 +127,6 @@ public class Servlet extends HttpServlet {
         }
     }
 
-    private double calcularExperiencia(int nivel){
-        boolean intervalo1=nivel>0 && nivel<=15;
-        boolean intervalo2=nivel>=16 && nivel<=35;
-        boolean intervalo3=nivel>=36 && nivel<=100;;
-        double e = 0;
 
-        if(intervalo1){
-            e= Math.pow(nivel,3) * (double) (24+(double)(nivel+1.0)/3.0)/50.0;
-        } else if (intervalo2) {
-            e= Math.pow(nivel,3) * (double)(14+nivel)/50;
-        } else if (intervalo3){
-            e= Math.pow(nivel,3) * (double)(nivel/2)/50;
-        }
-        return e;
-    }
 }
 
