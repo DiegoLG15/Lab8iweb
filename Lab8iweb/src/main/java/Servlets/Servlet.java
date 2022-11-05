@@ -52,7 +52,7 @@ public class Servlet extends HttpServlet {
                 view.forward(request, response);
                 break;
             case ("MenuDeHechizos"):
-                view = request.getRequestDispatcher("D.jsp");
+                view = request.getRequestDispatcher("hechizo.jsp");
                 view.forward(request, response);
                 break;
             case ("CatalogoDeObjetos"):
