@@ -35,7 +35,7 @@ public class Servlet extends HttpServlet {
                 view.forward(request, response);
                 break;
 
-            case "editar":
+            case "editarHeroe":
                 idHeroe = request.getParameter("id");
                 heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroe) );
 

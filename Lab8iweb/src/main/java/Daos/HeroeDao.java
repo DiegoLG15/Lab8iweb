@@ -59,6 +59,36 @@ public class HeroeDao {
         return listaHeroes;
     }
 
+    public void guardarHeroe(Heroe heroe){
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "INSERT INTO heroes (idHeroes,nombre,edad,nivel,puntosDeExperiencia,pareja,genero_idgenero,claseHeroe_idclase,ataque) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        try(Connection connection = DriverManager.getConnection(url,"root","root");
+            PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1,heroe.getIdHeroe());
+            pstmt.setString(2,heroe.getNombre());
+            pstmt.setInt(3,heroe.getEdad());
+            pstmt.setInt(4,heroe.getNivel());
+            pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
+            pstmt.setString(6,heroe.getPareja());
+            pstmt.setString(7,heroe.getGenero());
+            pstmt.setString(8,heroe.getClase());
+            pstmt.setNull(9, heroe.getAtaque());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public Heroe buscarPorId(int idHeroe){
 
         try {

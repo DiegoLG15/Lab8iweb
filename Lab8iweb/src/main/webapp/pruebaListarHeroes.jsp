@@ -74,7 +74,7 @@
                                     <td>
 
                                         <a type="button" class="btn btn-primary"
-                                           href="<%=request.getContextPath()%>/AdminServlet?action=editar&id>">
+                                           href="<%=request.getContextPath()%>/AdminServlet?action=editarHeroe&id>">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor"
                                                  class="bi bi-pencil" viewBox="0 0 16 16">
