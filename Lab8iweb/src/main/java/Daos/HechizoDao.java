@@ -43,4 +43,28 @@ public class HechizoDao {
         return listaHechizos;
 
     }
+
+    public void registrarHechizo(Hechizo hechizo) {
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "INSERT INTO enemigos (nombre, potencia, precisión, nivel_aprendizaje, elemento_idelemento) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, hechizo.getNombre());
+            pstmt.setInt(2, hechizo.getPotenciaDeHechizo());
+            pstmt.setInt(3, hechizo.getPrecisionDeHechizo());
+            pstmt.setInt(4, hechizo.getNivelAprendizaje());
+            pstmt.setString(5, hechizo.getElemento());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 }
