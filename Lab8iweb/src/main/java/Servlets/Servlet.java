@@ -1,8 +1,10 @@
 package Servlets;
 
 import Beans.Enemigo;
+import Beans.Hechizo;
 import Beans.Heroe;
 import Daos.EnemigoDao;
+import Daos.HechizoDao;
 import Daos.HeroeDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -21,11 +23,14 @@ public class Servlet extends HttpServlet {
         RequestDispatcher view;
         HeroeDao heroeDao = new HeroeDao();
         Heroe heroe= new Heroe();
+        HechizoDao hechizoDao = new HechizoDao();
+        Hechizo hechizo= new Hechizo();
         String idHeroe;
+        String idHechizo;
 
         switch (accion) {
             case ("MenuPrincipal"):
-                view = request.getRequestDispatcher("MenuPrincipal.jsp");
+                view = request.getRequestDispatcher("Index.jsp");
                 view.forward(request, response);
                 break;
             case ("MenuDeHeroes"):
@@ -63,16 +68,23 @@ public class Servlet extends HttpServlet {
                 }
                 break;
             case ("MenuDeEnemigos"):
+
                 view = request.getRequestDispatcher(".jsp");
                 view.forward(request, response);
                 break;
             case ("MenuDeHechizos"):
+                request.setAttribute("listaHechizos", hechizoDao.obtenerListaHechizo());
                 view = request.getRequestDispatcher("hechizo.jsp");
                 view.forward(request, response);
                 break;
             case ("CatalogoDeObjetos"):
                 view = request.getRequestDispatcher("Obj.jsp");
                 view.forward(request, response);
+                break;
+            case ("borrarHechizo"):
+                idHechizo = request.getParameter("id");
+                hechizoDao.borrarHechizo(Integer.parseInt(idHechizo));
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
                 break;
         }
     }

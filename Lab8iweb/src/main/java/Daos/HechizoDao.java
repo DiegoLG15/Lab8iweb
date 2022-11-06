@@ -1,6 +1,5 @@
 package Daos;
 
-import Beans.Enemigo;
 import Beans.Hechizo;
 
 import java.sql.*;
@@ -21,17 +20,19 @@ public class HechizoDao {
             Statement stmt = conn.createStatement();
 
             //ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM hechizos");
+            ResultSet rs = stmt.executeQuery( "SELECT idhechizos,nombre,potencia,precisión,nivel_aprendizaje, COALESCE(hechizos_idhechizos, ''), elemento FROM lab8.hechizos h\n" +
+                    "INNER JOIN lab8.elemento el\n" +
+                    "ON h.elemento_idelemento = el.idelemento");
             while (rs.next()) {
                 Hechizo hechizo = new Hechizo();
 
+                hechizo.setIdHechizo(rs.getInt(1));
                 hechizo.setNombre(rs.getString(2));
-
                 hechizo.setPotenciaDeHechizo(rs.getInt(3));
                 hechizo.setPrecisionDeHechizo(rs.getInt(  4));
                 hechizo.setNivelAprendizaje(rs.getInt(5));
-                hechizo.setElemento(rs.getString(6));
-
+                hechizo.setHechizoBase(rs.getString(6));
+                hechizo.setElemento(rs.getString(7));
 
                 listaHechizos.add(hechizo);
             }
@@ -73,7 +74,7 @@ public class HechizoDao {
         }
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "DELETE FROM lab8.hechizos WHERE idhechizo = ?";
+        String sql = "DELETE FROM lab8.hechizos WHERE idhechizos = ?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
