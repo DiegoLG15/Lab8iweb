@@ -64,7 +64,7 @@ public class Servlet extends HttpServlet {
                     view = request.getRequestDispatcher("editarHeroe.jsp");
                     view.forward(request, response);
                 } else {
-                    response.sendRedirect(request.getContextPath() + "/AdminServlet");
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
                 }
                 break;
             case ("MenuDeEnemigos"):
@@ -113,7 +113,7 @@ public class Servlet extends HttpServlet {
 
                 heroeDao.actualizarHeroe(heroe);
 
-                response.sendRedirect(request.getContextPath() + "/MenuServlet");
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
 
                 break;
 
