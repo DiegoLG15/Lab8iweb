@@ -104,12 +104,13 @@ public class Servlet extends HttpServlet {
                 heroe.setIdHeroe(Integer.parseInt(request.getParameter("ID Heroe"))); /*colocar los parametros en los botones del jsp*/
                 heroe.setNombre(request.getParameter("nombre"));
                 heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
-                heroe.setNivel(Integer.parseInt(request.getParameter("genero")));
-                heroe.setPuntosDeExperiencia(Integer.parseInt(request.getParameter("clase")));
-                heroe.setPareja(request.getParameter("nivel"));
                 /*colocar if-else para genero y clase despues*/
-                heroe.setGenero(request.getParameter("ataque"));
-                heroe.setClase(request.getParameter("pareja"));
+                heroe.setGenero(request.getParameter("genero"));
+                heroe.setClase(request.getParameter("clase"));
+                heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
+                heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
+                heroe.setPareja(request.getParameter("pareja"));
+
 
                 heroeDao.actualizarHeroe(heroe);
 
