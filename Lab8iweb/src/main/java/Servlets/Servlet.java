@@ -102,7 +102,7 @@ public class Servlet extends HttpServlet {
                 heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
 
-                int nivel=Integer.parseInt(request.getParameter("nivel"));
+                int nivel= heroe.getNivel();
                 DecimalFormat numeroFormateado = new DecimalFormat("#.00");
                 if(nivel>0 && nivel<=15){
                     double puntos=Math.pow(nivel,3) *  (24+(nivel+1.0)/3.0)/50.0;
@@ -119,8 +119,36 @@ public class Servlet extends HttpServlet {
                 }
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
-                heroe.setGenero(Integer.parseInt(request.getParameter("genero")));
-                heroe.setClase(Integer.parseInt(request.getParameter("clase")));
+
+                if(request.getParameter("genero").equals("Hombre")){
+                    heroe.setGenero(1);
+                }else if (request.getParameter("genero").equals("Mujer")){
+                    heroe.setGenero(2);
+                }else if (request.getParameter("genero").equals("Otro")){
+                    heroe.setGenero(3);
+                }
+
+                if(request.getParameter("clase").equals("Normal")){
+                    heroe.setClase(1);
+                }else if (request.getParameter("clase").equals("Sayayin")){
+                    heroe.setClase(2);
+                }else if (request.getParameter("clase").equals("Hechicero")){
+                    heroe.setClase(3);
+                }else if (request.getParameter("clase").equals("Androide")){
+                    heroe.setClase(4);
+                }else if (request.getParameter("clase").equals("Namekusein")){
+                    heroe.setClase(5);
+                }else if (request.getParameter("clase").equals("Guerrero")){
+                    heroe.setClase(6);
+                }else if (request.getParameter("clase").equals("Zombie")){
+                    heroe.setClase(7);
+                }else if (request.getParameter("clase").equals("Ninja")){
+                    heroe.setClase(8);
+                }else if (request.getParameter("clase").equals("Fantasma")){
+                    heroe.setClase(9);
+                }else if (request.getParameter("clase").equals("Robot")){
+                    heroe.setClase(10);
+                }
 
                 heroeDao.guardarHeroe(heroe);
 
@@ -132,9 +160,38 @@ public class Servlet extends HttpServlet {
                 heroe.setIdHeroe(Integer.parseInt(request.getParameter("ID Heroe"))); /*colocar los parametros en los botones del jsp*/
                 heroe.setNombre(request.getParameter("nombre"));
                 heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
-                /*colocar if-else para genero y clase despues*/
-                heroe.setGenero(Integer.parseInt(request.getParameter("genero")));
-                heroe.setClase(Integer.parseInt(request.getParameter("clase")));
+
+                if(request.getParameter("genero").equals("Hombre")){
+                    heroe.setGenero(1);
+                }else if (request.getParameter("genero").equals("Mujer")){
+                    heroe.setGenero(2);
+                }else if (request.getParameter("genero").equals("Otro")){
+                    heroe.setGenero(3);
+                }
+
+
+                if(request.getParameter("clase").equals("Normal")){
+                    heroe.setClase(1);
+                }else if (request.getParameter("clase").equals("Sayayin")){
+                    heroe.setClase(2);
+                }else if (request.getParameter("clase").equals("Hechicero")){
+                    heroe.setClase(3);
+                }else if (request.getParameter("clase").equals("Androide")){
+                    heroe.setClase(4);
+                }else if (request.getParameter("clase").equals("Namekusein")){
+                    heroe.setClase(5);
+                }else if (request.getParameter("clase").equals("Guerrero")){
+                    heroe.setClase(6);
+                }else if (request.getParameter("clase").equals("Zombie")){
+                    heroe.setClase(7);
+                }else if (request.getParameter("clase").equals("Ninja")){
+                    heroe.setClase(8);
+                }else if (request.getParameter("clase").equals("Fantasma")){
+                    heroe.setClase(9);
+                }else if (request.getParameter("clase").equals("Robot")){
+                    heroe.setClase(10);
+                }
+
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));

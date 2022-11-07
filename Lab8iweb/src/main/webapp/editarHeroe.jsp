@@ -76,28 +76,61 @@
                                                    name="edad" value="<%=heroe.getEdad()%>">
                                         </ul>
                                         <ul class="list-group list-group-flush">
-
+                                            <% String genero=null;
+                                                if (heroe.getGenero()==1){
+                                                    genero="Hombre"; } else if (heroe.getGenero()==2) {
+                                                    genero="Mujer"; } else if (heroe.getGenero()==3) {
+                                                    genero="Otro"; } %>
                                             <label for="genero" class="form-label">GÉNERO:</label>
-                                            <input type="text" class="form-control" id="genero" placeholder="genero" name="genero" value="<%=heroe.getGenero()%>">
+                                            <select class="form-select" id="genero" placeholder="genero" name="genero">
+                                                <option selected>Seleccione opción para cambiar género <%=genero%> </option>
+                                                <option value="Hombre">Hombre</option>
+                                                <option value="Mujer">Mujer</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
-
+                                            <% String clase=null;
+                                            if (heroe.getClase()==1){
+                                            clase="Normal"; } else if (heroe.getClase()==2) {
+                                                clase="Sayayin"; } else if (heroe.getClase()==3) {
+                                                clase="Hechicero"; } else if (heroe.getClase()==4) {
+                                                clase="Androide"; } else if (heroe.getClase()==5) {
+                                                clase="Namekusein"; } else if (heroe.getClase()==6) {
+                                                clase="Guerrero"; } else if (heroe.getClase()==7) {
+                                                clase="Zombie"; } else if (heroe.getClase()==8) {
+                                                clase="Ninja"; } else if (heroe.getClase()==9) {
+                                                clase="Fantasma"; } else if (heroe.getClase()==10) {
+                                                clase="Robot";
+                                            }%>
                                             <label for="clase" class="form-label">CLASE:</label>
-                                            <input type="text" class="form-control" id="clase" placeholder="clase" name="clase" value="<%=heroe.getClase()%>">
+                                            <select class="form-select" id="clase" placeholder="clase" name="clase">
+                                                <option selected>Seleccione opción para cambiar clase <%=clase%>"</option>
+                                                <option value="Normal">Normal</option>
+                                                <option value="Sayayin">Sayayin</option>
+                                                <option value="Hechicero">Hechicero</option>
+                                                <option value="Androide">Androide</option>
+                                                <option value="Namekusein">Namekusein</option>
+                                                <option value="Guerrero">Guerrero</option>
+                                                <option value="Zombie">Zombie</option>
+                                                <option value="Ninja">Ninja</option>
+                                                <option value="Fantasma">Fantasma</option>
+                                                <option value="Robot">Robot</option>
+                                            </select>
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="nivel" class="form-label">NIVEL:</label>
-                                            <input type="text" class="form-control" id="nivel" placeholder="nivel"
+                                            <input type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
                                                    name="nivel" value="<%=heroe.getNivel()%>">
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="ataque" class="form-label">ATAQUE:</label>
-                                            <input type="text" class="form-control" id="ataque" placeholder="ataque"
+                                            <input type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
                                                    name="ataque" value="<%=heroe.getAtaque()%>">
 
                                         </ul>

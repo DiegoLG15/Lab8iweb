@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Beans.Heroe" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%
     ArrayList<Heroe> listaHeroes = (ArrayList<Heroe>) request.getAttribute("listaHeroes");
 %>
@@ -81,16 +82,16 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr style="align-content: center">
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>ID</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>NOMBRE</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>EDAD</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>GENERO</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>CLASE</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>NIVEL</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>ATAQUE</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>PAREJA</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>PUNTOS DE EXPERIENCIA</b></th>
-                                <th style="color:#053934; padding-left: 2rem; text-align: center"><b>OPCIONES</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>ID</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>NOMBRE</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>EDAD</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>GENERO</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>CLASE</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>NIVEL</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>ATAQUE</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>PAREJA</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col" ><b>PUNTOS DE EXPERIENCIA</b></th>
+                                <th style="color:#053934; padding-left: 2rem; text-align: center" scope="col"><b>OPCIONES</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,36 +99,64 @@
 
                                 for (Heroe heroe : listaHeroes) {
                             %>
-                            <tr>
-                                <td>
+                            <tr style="align-content: center">
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getIdHeroe()%>
                                 </td>
-                                <td>
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getNombre()%>
                                 </td>
-                                <td>
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getEdad()%>
                                 </td>
-                                <td>
-                                    <%=heroe.getGenero()%>
+                                <td style="padding-left: 2rem; text-align: center">
+                                    <% if (heroe.getGenero()==1){%>
+                                    Hombre <%} else if (heroe.getGenero()==2) {%>
+                                    Mujer <%} else if (heroe.getGenero()==3) {%>
+                                    Otro
+
+                                <%}%>
                                 </td>
-                                <td>
-                                    <%=heroe.getClase()%>
-                                </td>
-                                <td>
+                                <td style="padding-left: 2rem; text-align: center">
+                                    <% if (heroe.getClase()==1){%>
+                                    Normal <%} else if (heroe.getClase()==2) {%>
+                                    Sayayin <%} else if (heroe.getClase()==3) {%>
+                                    Hechicero <%} else if (heroe.getClase()==4) {%>
+                                    Androide <%} else if (heroe.getClase()==5) {%>
+                                    Namekusein <%} else if (heroe.getClase()==6) {%>
+                                    Guerrero <%} else if (heroe.getClase()==7) {%>
+                                    Zombie <%} else if (heroe.getClase()==8) {%>
+                                    Ninja <%} else if (heroe.getClase()==9) {%>
+                                    Fantasma <%} else if (heroe.getClase()==10) {%>
+                                    Robot
+                                    <%}%>
+                                </td >
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getNivel()%>
                                 </td>
-                                <td>
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getAtaque()%>
                                 </td>
-                                <td>
+                                <td style="padding-left: 2rem; text-align: center">
                                     <%=heroe.getPareja()%>
                                 </td>
-                                <td>
-                                    <%=heroe.getPuntosDeExperiencia()%>
+                                <td style="padding-left: 2rem; text-align: center"><%
+                                    int nivel= heroe.getNivel();
+                                    DecimalFormat numeroFormateado = new DecimalFormat("#.00");
+                                    if(nivel>0 && nivel<=15){
+                                    double puntos=Math.pow(nivel,3) *  (24+(nivel+1.0)/3.0)/50.0;
+                                    double valorfinal = Math.round(puntos*100d)/100d;%>
+                                    <%=valorfinal%><%}else if (nivel>=16 && nivel<=35){
+                                    double puntos=Math.pow(nivel,3) *  (14+nivel)/50.0;
+                                    double valorfinal = Math.round(puntos*100d)/100d; %>
+                                    <%=valorfinal%><%}else if (nivel>=36 && nivel<=100){
+                                    double puntos=Math.pow(nivel,3) *  (32+nivel/2)/50.0;
+                                    double valorfinal = Math.round(puntos*100d)/100d;%>
+                                    <%=valorfinal%><%}%>
+
                                 </td>
 
-                                <td>
+                                <td >
 
                                     <a type="button" class="btn btn-primary"
                                        href="<%=request.getContextPath()%>/MenuServlet?accion=editarHeroe&id=<%=heroe.getIdHeroe()%>">
