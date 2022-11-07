@@ -74,7 +74,8 @@ public class HechizoDao {
         }
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "DELETE FROM lab8.hechizos WHERE idhechizos = ?";
+        String sql = "SELECT idhechizos, hechizos_idhechizos FROM lab8.hechizos;\n" +
+                "DELETE FROM lab8.hechizos WHERE hechizos_idhechizos=?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -86,6 +87,7 @@ public class HechizoDao {
             throw new RuntimeException(e);
         }
     }
+
 
 
 }
