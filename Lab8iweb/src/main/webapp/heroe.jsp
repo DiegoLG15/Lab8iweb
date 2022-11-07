@@ -186,7 +186,7 @@
             </div>
         </div>
         <br>
-        <a class="btn btn-primary" href="<%=request.getContextPath()%>/MenuServlet?accion=index" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+        <a class="btn btn-primary" href="<%=request.getContextPath()%>/MenuServlet?accion=MenuPrincipal" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
         <br><br>
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
