@@ -68,20 +68,19 @@ public class HeroeDao {
         }
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "INSERT INTO heroes (idHeroes,nombre,edad,nivel,puntosDeExperiencia,pareja,genero_idgenero,claseHeroe_idclase,ataque) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO heroes (nombre,edad,nivel,puntosDeExperiencia,pareja,genero_idgenero,claseHeroe_idclase,ataque) VALUES (?,?,?,?,?,?,?,?)";
 
         try(Connection connection = DriverManager.getConnection(url,"root","root");
             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1,heroe.getIdHeroe());
-            pstmt.setString(2,heroe.getNombre());
-            pstmt.setInt(3,heroe.getEdad());
-            pstmt.setInt(4,heroe.getNivel());
-            pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
-            pstmt.setInt(6,heroe.getPareja());
-            pstmt.setInt(7,heroe.getGenero());
-            pstmt.setInt(8,heroe.getClase());
-            pstmt.setInt(9, heroe.getAtaque());
+            pstmt.setString(1,heroe.getNombre());
+            pstmt.setInt(2,heroe.getEdad());
+            pstmt.setInt(3,heroe.getNivel());
+            pstmt.setDouble(4,heroe.getPuntosDeExperiencia());
+            pstmt.setInt(5,heroe.getPareja());
+            pstmt.setInt(6,heroe.getGenero());
+            pstmt.setInt(7,heroe.getClase());
+            pstmt.setInt(8, heroe.getAtaque());
 
             pstmt.executeUpdate();
 

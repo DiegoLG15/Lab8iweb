@@ -56,11 +56,7 @@
                             <div class="col-md-6">
                                 <form method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHeroe" class="row g-3"">
                                     <td style="padding-left: 2rem;">
-                                        <ul class="list-group list-group-flush">
-                                            <label for="nombre" class="form-label" >ID</label>
-                                            <input type="text" class="form-control" id="ID Heroe" placeholder="ID Heroe"
-                                                   name="ID Heroe" >
-                                        </ul>
+
 
                                         <ul class="list-group list-group-flush">
 

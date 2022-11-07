@@ -92,7 +92,6 @@ public class Servlet extends HttpServlet {
 
             case "guardarHeroe":
 
-                heroe.setIdHeroe(Integer.parseInt(request.getParameter("ID Heroe")));
                 heroe.setNombre(request.getParameter("nombre"));
                 heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
