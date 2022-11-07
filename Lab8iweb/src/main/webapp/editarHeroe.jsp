@@ -82,8 +82,8 @@
                                                     genero="Mujer"; } else if (heroe.getGenero()==3) {
                                                     genero="Otro"; } %>
                                             <label for="genero" class="form-label">GÉNERO:</label>
-                                            <select class="form-select" id="genero" placeholder="genero" name="genero">
-                                                <option selected>Seleccione opción para cambiar género <%=genero%> </option>
+                                            <select required class="form-select" id="genero" placeholder="genero" name="genero" >
+                                                <option value=""> Cambiar el genero <%=genero%></option>
                                                 <option value="Hombre">Hombre</option>
                                                 <option value="Mujer">Mujer</option>
                                                 <option value="Otro">Otro</option>
@@ -105,8 +105,8 @@
                                                 clase="Robot";
                                             }%>
                                             <label for="clase" class="form-label">CLASE:</label>
-                                            <select class="form-select" id="clase" placeholder="clase" name="clase">
-                                                <option selected>Seleccione opción para cambiar clase <%=clase%>"</option>
+                                            <select required class="form-select" id="clase" placeholder="clase" name="clase">
+                                                <option value=""> Cambiar la clase <%=clase%></option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Sayayin">Sayayin</option>
                                                 <option value="Hechicero">Hechicero</option>

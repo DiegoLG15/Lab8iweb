@@ -55,7 +55,7 @@
                                 </td>
                             </div>
                             <div class="col-md-6">
-                                <form method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHeroe" class="row g-3">
+                                <form  method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHeroe" class="row g-3">
                                     <td style="padding-left: 2rem;">
 
 
@@ -63,7 +63,7 @@
 
 
                                             <label for="nombre" class="form-label" >NOMBRE</label>
-                                            <input maxlength="10" type="text" class="form-control" id="nombre" placeholder="nombre"
+                                            <input required maxlength="10" type="text" class="form-control" id="nombre" placeholder="nombre"
                                                    name="nombre" >
 
                                         </ul>
@@ -71,14 +71,14 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="edad" class="form-label">EDAD:</label>
-                                            <input type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
+                                            <input required type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
                                                    name="edad" >
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="genero" class="form-label">GÉNERO:</label>
-                                            <select class="form-select" id="genero" placeholder="genero" name="genero">
-                                                <option selected>Seleccione una opción</option>
+                                            <select required class="form-select" id="genero" placeholder="genero" name="genero">
+                                                <option value="">Seleccione una opción</option>
                                                 <option value="Hombre">Hombre</option>
                                                 <option value="Mujer">Mujer</option>
                                                 <option value="Otro">Otro</option>
@@ -88,9 +88,8 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="clase" class="form-label">CLASE:</label>
-                                            <select class="form-select" id="clase" placeholder="clase" name="clase">
-                                                <option selected>Seleccione una opción</option>
-                                                <option value="Normal">Normal</option>
+                                            <select required class="form-select" id="clase" placeholder="clase" name="clase">
+                                                <option value="">Seleccione una opción</option>
                                                 <option value="Sayayin">Sayayin</option>
                                                 <option value="Hechicero">Hechicero</option>
                                                 <option value="Androide">Androide</option>
@@ -106,14 +105,14 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="nivel" class="form-label">NIVEL:</label>
-                                            <input type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
+                                            <input required type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
                                                    name="nivel" >
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="ataque" class="form-label">ATAQUE:</label>
-                                            <input type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
+                                            <input required type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
                                                    name="ataque" >
 
                                         </ul>
@@ -122,7 +121,7 @@
                                             int cantidad=heroeDao.cantidadNullsParejas();%>
                                             <%=cantidad%>
                                             <label for="pareja" class="form-label">PAREJA:</label>
-                                            <input type="text" class="form-control" id="pareja" placeholder="pareja"
+                                            <input required type="text" class="form-control" id="pareja" placeholder="pareja"
                                                    name="pareja" >
 
                                         </ul>
