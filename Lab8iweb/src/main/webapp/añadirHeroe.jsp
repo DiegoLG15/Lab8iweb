@@ -50,11 +50,11 @@
                             </div>
                             <div class="col-md-6">
                                 <td>
-                                    <img src="https://i.pinimg.com/736x/50/2f/c4/502fc4e5946d025d1e4100c78befe89e.jpg" class="rounded mx-auto d-block " alt="userphoto" height="400rem" width="200rem">
+                                    <img src="https://img.freepik.com/vector-premium/mago-o-hechicero-baston-magico-o-varita-ilustracion-vectorial-plana-aislada_181313-2815.jpg?w=740" class="rounded mx-auto d-block " alt="userphoto" height="400rem" width="200rem">
                                 </td>
                             </div>
                             <div class="col-md-6">
-                                <form method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHeroe" class="row g-3"">
+                                <form method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHeroe" class="row g-3">
                                     <td style="padding-left: 2rem;">
 
 

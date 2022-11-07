@@ -1,3 +1,5 @@
+<%@ page import="Beans.Heroe" %>
+<%@ page import="Beans.Hechizo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,25 +69,35 @@
                 </ul>
                 <br>
               </td>
-              <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizar">
+              <form method="post" action="<%=request.getContextPath()%><% Hechizo user=null; %>/ServletAdmin?action=actualizar">
                 <td style="padding-left: 2rem;">
                   <ul class="list-group list-group-flush">
-                    <input type="hidden" name = "idObjeto" value="<%=user.getIdObjeto()%>">
+                    <input type="hidden" name = "idHechizo" value="<%=user.getIdHechizo()%>">
                   </ul>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="nombre" name="nombre"  value="<%=user.getNombre()%>">
-                  </ul>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="efecto" name="efecto" value="<%=user.getEfecto()%>">
+                    <input type="text" class="form-control" id="nombre" name="nombre"  value="<%=user.getNombreHechizo()%>">
                   </ul>
                   <br>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="peso" name="peso" value="<%=user.getPeso()%>">
+                    <input type="text" class="form-control" id="potencia" name="potencia" value="<%=user.getPotenciaDeHechizo()%>">
                   </ul>
                   <br>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="cantidad" name="cantidad" value="<%=user.getCantidad()%>">
+                    <input type="text" class="form-control" id="precision" name="precision" value="<%=user.getPrecisionDeHechizo()%>">
+                  </ul>
+                  <br>
+                  <ul class="list-group list-group-flush">
+                    <input type="text" class="form-control" id="nivaprend" name="nivaprend" value="<%=user.getNivelAprendizaje()%>">
+                  </ul>
+                  <br>
+                  <br>
+                  <ul class="list-group list-group-flush">
+                    <input type="text" class="form-control" id="hechizoBase" name="hechizoBase" value="<%=user.getHechizoBase()%>">
+                  </ul>
+                  <br>
+                  <br>
+                  <ul class="list-group list-group-flush">
+                    <input type="text" class="form-control" id="elemento" name="elemento" value="<%=user.getElemento()%>">
                   </ul>
                   <br>
                 </td>
@@ -121,7 +133,7 @@
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <br></br>
-    <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletAdmin?action=listaInventario" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
     <br><br>
   </body>
 </html>

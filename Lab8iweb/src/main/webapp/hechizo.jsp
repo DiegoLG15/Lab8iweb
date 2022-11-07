@@ -144,7 +144,7 @@
                   <%=hechizo.getIdHechizo()%>
                 </td>
                 <td>
-                  <%=hechizo.getNombre()%>
+                  <%=hechizo.getNombreHechizo()%>
                 </td>
                 <td>
                   <%=hechizo.getElemento()%>
