@@ -27,11 +27,11 @@ public class HechizoDao {
                 Hechizo hechizo = new Hechizo();
 
                 hechizo.setIdHechizo(rs.getInt(1));
-                hechizo.setNombre(rs.getString(2));
+                hechizo.setNombreHechizo(rs.getString(2));
                 hechizo.setPotenciaDeHechizo(rs.getInt(3));
                 hechizo.setPrecisionDeHechizo(rs.getInt(  4));
                 hechizo.setNivelAprendizaje(rs.getInt(5));
-                hechizo.setHechizoBase(rs.getString(6));
+                hechizo.setHechizoBase(rs.getInt(6));
                 hechizo.setElemento(rs.getString(7));
 
                 listaHechizos.add(hechizo);
@@ -48,17 +48,18 @@ public class HechizoDao {
     public void registrarHechizo(Hechizo hechizo) {
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "INSERT INTO enemigos (nombre, potencia, precisión, nivel_aprendizaje, elemento_idelemento) "
+        String sql = "INSERT INTO enemigos (nombre, potencia, precisión, nivel_aprendizaje, hechizos_idhechizos,elemento_idelemento) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, hechizo.getNombre());
+            pstmt.setString(1, hechizo.getNombreHechizo());
             pstmt.setInt(2, hechizo.getPotenciaDeHechizo());
             pstmt.setInt(3, hechizo.getPrecisionDeHechizo());
             pstmt.setInt(4, hechizo.getNivelAprendizaje());
-            pstmt.setString(5, hechizo.getElemento());
+            pstmt.setInt(5, hechizo.getHechizoBase());
+            pstmt.setString(6, hechizo.getElemento());
 
             pstmt.executeUpdate();
 

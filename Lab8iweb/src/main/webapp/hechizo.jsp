@@ -36,7 +36,7 @@
         background-attachment: fixed;
         margin: 0;
         height: 100vh;
-        bgcolor= "#800000";
+        bgcolor : "#800000";
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -88,7 +88,7 @@
             <div class="name"><span data-text="Menu Enemigos">Enemigos</span></div>
             <!-- we are create first menu item name home -->
           </a>
-          <a class="navbar-brand" href="<%=request.getContextPath()%>/">
+          <a class="navbar-brand"  href="<%=request.getContextPath()%>/" >
             <!-- this anchor text for link your home to another page -->
             <div class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M40.6 12.85 38.9 9.1l-3.75-1.7 3.75-1.7 1.7-3.75 1.7 3.75 3.75 1.7-3.75 1.7Zm-24.1 0L14.8 9.1l-3.75-1.7 3.75-1.7 1.7-3.75 1.7 3.75 3.75 1.7-3.75 1.7Zm24.1 24.1-1.7-3.75-3.75-1.7 3.75-1.7 1.7-3.75 1.7 3.75 3.75 1.7-3.75 1.7ZM9.35 43.4 4.6 38.65q-.55-.55-.6-1.275-.05-.725.6-1.375l22.5-22.5q.6-.6 1.45-.6t1.45.6l4.5 4.5q.6.6.6 1.45t-.6 1.45L12 43.4q-.6.6-1.325.6t-1.325-.6Zm1.15-2.85L26.15 24.9l-3.1-3.1L7.4 37.45Z"/></svg>
@@ -96,9 +96,9 @@
             <div class="name"><span data-text="Menu Hechizos">Hechizos</span></div>
             <!-- we are create first menu item name home -->
           </a>
-          <a class="navbar-brand" href="<%=request.getContextPath()%>/">
+          <a class="navbar-brand" href="<%=request.getContextPath()%>/" >
             <!-- this anchor text for link your home to another page -->
-            <div class="icon">
+            <div class="icon" style="align-content: center">
               <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M11.1 44q-2.2 0-3.725-1.525T5.85 38.75V32.5h6.35V4l3 3 3-3 2.95 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3v34.75q0 2.2-1.525 3.725T36.9 44Zm25.8-3q1 0 1.625-.625t.625-1.625V9H15.2v23.5h19.45v6.25q0 1 .625 1.625T36.9 41ZM17.85 16.9v-3h12v3Zm0 6.7v-3h12v3Zm16.65-6.7q-.6 0-1.05-.45Q33 16 33 15.4q0-.6.45-1.05.45-.45 1.05-.45.6 0 1.05.45.45.45.45 1.05 0 .6-.45 1.05-.45.45-1.05.45Zm0 6.45q-.6 0-1.05-.45-.45-.45-.45-1.05 0-.6.45-1.05.45-.45 1.05-.45.6 0 1.05.45.45.45.45 1.05 0 .6-.45 1.05-.45.45-1.05.45ZM11.05 41h20.6v-5.5H8.85v3.25q0 1 .625 1.625T11.05 41Zm-2.2 0v-5.5V41Z"/></svg>
             </div>
             <div class="name"><span data-text="Catalogo de objetos">Catálogo de objetos</span></div>

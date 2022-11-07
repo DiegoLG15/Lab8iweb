@@ -45,12 +45,12 @@
                         <div class="row">
                             <div >
                                 <center>
-                                    <h4><b style="color:#144C47">CREAR HÉROE:</b></h4>
+                                    <h4><b style="color:#144C47">CREAR HEROE:</b></h4>
                                 </center>
                             </div>
                             <div class="col-md-6">
                                 <td>
-                                    <img src="https://cdnb.artstation.com/p/assets/images/images/031/262/015/large/seo-eaglesage-firemagecasuallsmall.jpg?1603114058" class="rounded mx-auto d-block " alt="userphoto" height="400rem" width="200rem">
+                                    <img src="https://i.pinimg.com/736x/50/2f/c4/502fc4e5946d025d1e4100c78befe89e.jpg" class="rounded mx-auto d-block " alt="userphoto" height="400rem" width="200rem">
                                 </td>
                             </div>
                             <div class="col-md-6">

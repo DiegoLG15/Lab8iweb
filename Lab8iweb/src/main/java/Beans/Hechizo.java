@@ -2,11 +2,11 @@ package Beans;
 
 public class Hechizo {
     private int idHechizo;
-    private String nombre;
+    private String nombreHechizo;
     private int potenciaDeHechizo;
     private int precisionDeHechizo;
     private int nivelAprendizaje;
-    private String hechizoBase;
+    private int hechizoBase;
     private String elemento;
 
     public int getIdHechizo() {
@@ -17,12 +17,12 @@ public class Hechizo {
         this.idHechizo = idHechizo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreHechizo() {
+        return nombreHechizo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreHechizo(String nombre) {
+        this.nombreHechizo = nombre;
     }
 
     public int getPotenciaDeHechizo() {
@@ -49,11 +49,11 @@ public class Hechizo {
         this.nivelAprendizaje = nivelAprendizaje;
     }
 
-    public String getHechizoBase() {
+    public int getHechizoBase() {
         return hechizoBase;
     }
 
-    public void setHechizoBase(String hechizoBase) {
+    public void setHechizoBase(int hechizoBase) {
         this.hechizoBase = hechizoBase;
     }
 
