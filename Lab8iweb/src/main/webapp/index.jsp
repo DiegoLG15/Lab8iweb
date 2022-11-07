@@ -45,27 +45,60 @@
 <p></p>
 <div class="d-flex justify-content-center">
     <center>
-        <p></p>
-        <p></p>
-        <div class="card" style="width: 50rem; background-color:#00000090">
-            <p></p>
-            <p></p>
+        <br>
+        <div class="card" style="width: 45rem; background-color:#00000090">
+            <br>
             <h1 style="font-family: monospace; font-weight: bold; color: white" class="card-title"><b>ÚLTIMA FANTASIA</b></h1>
-            <p></p>
-            <p></p>
-            <p></p>
-            <h4 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-text"><b> SELECCIONE UNA OPCIÓN </b></h4>
-            <p></p>
-            <div class="d-grid gap-2 col-8 mx-auto">
-                <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHeroes" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#404546 ; width: 15rem; font-size: 15px"><b>Heroes</b></button></a>
-                <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeEnemigos" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#404546; width: 15rem; font-size: 15px;"><b>Enemigos</b></button></a>
-                <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHechizos" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#404546 ; width: 15rem; font-size: 15px"><b>Hechizos</b></button></a>
-                <a href="crear_cuenta_nueva.html" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#404546; width: 15rem; font-size: 15px;"><b>Objetos</b></button></a>
-                <p></p>
-                <p></p>
+            <br>
+            <h5 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-text"><b> SELECCIONE UNA OPCIÓN </b></h5>
+            <br>
+            <br>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" height="300" src="https://cdnb.artstation.com/p/assets/images/images/028/820/243/20200724110900/smaller_square/seo-eaglesage-290520-cha-protectivepriestesssmall.jpg?1595606941" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">HEROES</h5>
+                            <p class="card-text">Los héroes están dispuestos a arriesgar su vida por mantener la armonía del mundo. </p>
+                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHeroes" class="btn btn-dark">Conoce mas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" height="300" src="https://cdnb.artstation.com/p/assets/images/images/031/132/051/20201014114802/smaller_square/seo-eaglesage-040320-cha-owlpriest-300dpi.jpg?1602694082" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">ENEMIGOS</h5>
+                            <p class="card-text">Los enemigos son seres malignos dispuestos a destruir a los héroes. </p>
+                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeEnemigos" class="btn btn-dark">Conoce mas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" height="300" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/9e5ed6147205377.62bddfd0b0679.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">HECHIZOS</h5>
+                            <p class="card-text"> Los hechizos son poderosas armas elementales que se usan
+                                para la guerra. </p>
+                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHechizos class="btn btn-dark">Conoce mas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" height="300" src="https://cdna.artstation.com/p/assets/images/images/026/276/972/large/seo-eaglesage-090420-prp-candleholder.jpg?1588347521" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">OBJETOS</h5>
+                            <p class="card-text">Lista de objetos que utilizan los heroes y los enemigos en la guerra.</p>
+                            <a href="lab8_heroes.html " class="btn btn-dark">Conoce mas</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <br><br>
         </div>
-        </center>
+    </center>
 </div>
 </body>
 
