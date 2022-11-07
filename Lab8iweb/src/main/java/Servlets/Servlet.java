@@ -228,6 +228,28 @@ public class Servlet extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/");
                 break;
+            case "actualizarHechizo":
+                String hechizoID1 = request.getParameter("idHechizo");
+                String nombrehechizo1 = request.getParameter("nombreHechizo");
+                String potencia1 = request.getParameter("potenciaDeHechizo");
+                String precision1 = request.getParameter("precisionDeHechizo");
+                String nivelAprendiaje1 = request.getParameter("precisionDeHechizo");
+                String hechizoBase1 = request.getParameter("hechizoBase");
+                String elemento1 = request.getParameter("elemento");
+
+                try {
+                    int hechizoID_int = Integer.parseInt(hechizoID1);
+                    int potencia_int = Integer.parseInt(potencia1);
+                    int precision_int = Integer.parseInt(precision1);
+                    int nivelAprendizaje_int = Integer.parseInt(nivelAprendiaje1);
+                    int hechizoBase_int = Integer.parseInt(hechizoBase1);
+                    hechizoDao.actualizarHechizo(hechizo);
+
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
+                } catch (NumberFormatException e) {
+                    response.sendRedirect(request.getContextPath() + "/JobServlet?action=editar&id=" + hechizoID1);
+                }
+                break;
 
             case "buscarHeroe":
                 String searchText = request.getParameter("searchText");

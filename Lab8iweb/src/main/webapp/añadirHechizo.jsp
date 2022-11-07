@@ -1,6 +1,8 @@
-<%@ page import="Beans.Heroe" %>
-<%@ page import="Beans.Hechizo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="Beans.Heroe" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="Daos.HeroeDao" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>Editar Hechizo</title>
+    <title>Editar Heroes</title>
     <style>
       body {
         background: url(https://img.freepik.com/premium-photo/unicorn-background-with-rainbow-sky-fantasy-colorful-space-galaxy-illustration_71374-1570.jpg?w=2000);
@@ -22,8 +24,7 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
+    <head/>
     <header class="d-flex p-2" style="background-color: rgba(255,255,255,0.6)">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -36,104 +37,111 @@
         </div>
       </div>
     </header>
-    <br><br><br>
-    <div class="d-flex justify-content-center">
-      <div class="card">
-        <div class="card-body">
-          <div >
-            <center>
-              <h4><b style="color:#144C47">NUEVO OBJETO</b></h4>
-            </center>
-          </div>
-          <br>
-          <table>
-            <tr>
-              <td><img src="https://cdnb.artstation.com/p/assets/images/images/031/262/015/large/seo-eaglesage-firemagecasuallsmall.jpg?1603114058" class="rounded mx-auto d-block " alt="userphoto" height="300rem" width="200rem">
+    <br><br><br><br>
+    <main id="main">
+      <section class="section profile">
+        <div class="container">
+          <div class="container-fluid " style="background-color: rgba(255,255,255,0.6);width: 65%">
 
-              </td>
-              <td style="padding-left: 2rem;">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" style="border-radius: 10%;color: black"><b>Nombre:</b></li>
-                </ul>
-                <br>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" style="border-radius: 10%;color: black"><b>Efecto/Uso:</b></li>
-                </ul>
-                <br>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" style="border-radius: 10%;color:black"><b>Peso:</b></li>
-                </ul>
-                <br>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" style="border-radius: 10%;color:black"><b>Cantidad:</b></li>
-                </ul>
-                <br>
-              </td>
-              <form method="post" action="<%=request.getContextPath()%><% Hechizo user=null; %>/ServletAdmin?action=actualizar">
-                <td style="padding-left: 2rem;">
-                  <ul class="list-group list-group-flush">
-                    <input type="hidden" name = "idHechizo" value="<%=user.getIdHechizo()%>">
-                  </ul>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="nombre" name="nombre"  value="<%=user.getNombreHechizo()%>">
-                  </ul>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="potencia" name="potencia" value="<%=user.getPotenciaDeHechizo()%>">
-                  </ul>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="precision" name="precision" value="<%=user.getPrecisionDeHechizo()%>">
-                  </ul>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="nivaprend" name="nivaprend" value="<%=user.getNivelAprendizaje()%>">
-                  </ul>
-                  <br>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="hechizoBase" name="hechizoBase" value="<%=user.getHechizoBase()%>">
-                  </ul>
-                  <br>
-                  <br>
-                  <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" id="elemento" name="elemento" value="<%=user.getElemento()%>">
-                  </ul>
-                  <br>
-                </td>
-              </form>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <br>
-    <form>
-      <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir</button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Se añadirá un nuevo objeto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="row">
+              <div >
+                <center>
+                  <h4><b style="color:#144C47">CREAR HEROE:</b></h4>
+                </center>
               </div>
-              <div class="modal-footer">
-                <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-primary">Confirmar</button>
-                  <br>
-                  <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> Cancelar </a>
-                </div>
+              <div class="col-md-6">
+                <td>
+                  <img src="https://img.freepik.com/vector-premium/mago-o-hechicero-baston-magico-o-varita-ilustracion-vectorial-plana-aislada_181313-2815.jpg?w=740" class="rounded mx-auto d-block " alt="userphoto" height="400rem" width="200rem">
+                </td>
+              </div>
+              <div class="col-md-6">
+                <form  method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=guardarHechixo" class="row g-3">
+                  <td style="padding-left: 2rem;">
+
+
+                    <ul class="list-group list-group-flush">
+
+
+                      <label for="nombre" class="form-label" >NOMBRE</label>
+                      <input required maxlength="10" type="text" class="form-control" id="nombre" placeholder="nombre"
+                             name="nombre" >
+
+                    </ul>
+
+                    <ul class="list-group list-group-flush">
+
+                      <label for="edad" class="form-label">EDAD:</label>
+                      <input required type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
+                             name="edad" >
+                    </ul>
+                    <ul class="list-group list-group-flush">
+
+                      <label for="genero" class="form-label">GÉNERO:</label>
+                      <select required class="form-select" id="genero" placeholder="genero" name="genero">
+                        <option value="">Seleccione una opción</option>
+                        <option value="Hombre">Hombre</option>
+                        <option value="Mujer">Mujer</option>
+                        <option value="Otro">Otro</option>
+                      </select>
+
+                    </ul>
+                    <ul class="list-group list-group-flush">
+
+                      <label for="clase" class="form-label">CLASE:</label>
+                      <select required class="form-select" id="clase" placeholder="clase" name="clase">
+                        <option value="">Seleccione una opción</option>
+                        <option value="Sayayin">Sayayin</option>
+                        <option value="Hechicero">Hechicero</option>
+                        <option value="Androide">Androide</option>
+                        <option value="Namekusein">Namekusein</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Zombie">Zombie</option>
+                        <option value="Ninja">Ninja</option>
+                        <option value="Fantasma">Fantasma</option>
+                        <option value="Robot">Robot</option>
+                      </select>
+
+                    </ul>
+                    <ul class="list-group list-group-flush">
+
+                      <label for="nivel" class="form-label">NIVEL:</label>
+                      <input required type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
+                             name="nivel" >
+
+                    </ul>
+                    <ul class="list-group list-group-flush">
+
+                      <label for="ataque" class="form-label">ATAQUE:</label>
+                      <input required type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
+                             name="ataque" >
+
+                    </ul>
+                    <ul class="list-group list-group-flush">
+                      <%HeroeDao heroeDao=new HeroeDao();
+                        int cantidad=heroeDao.cantidadNullsParejas();%>
+                      <%=cantidad%>
+                      <label for="pareja" class="form-label">PAREJA:</label>
+                      <input required type="text" class="form-control" id="pareja" placeholder="pareja"
+                             name="pareja" >
+
+                    </ul>
+                    <ul class="list-group list-group-flush">
+                      <div class="d-grid gap-2 col-6 col-lg-4 col-xl-3 mx-auto">
+                        <button class="btn btn-danger" type="submit">Crear</button>
+                      </div>
+                      <div class="d-grid gap-2 col-3 col-lg-4 col-xl-3 mx-auto">
+                        <a class="btn btn-secondary" href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHeroes">Regresar</a>
+                      </div>
+                    </ul>
+                  </td>
+                </form>
               </div>
             </div>
+
           </div>
+
         </div>
-      </div>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <br></br>
-    <a class="btn btn-primary" href="<%=request.getContextPath()%>/" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-    <br><br>
-  </body>
+      </section>
+    </main>
+</html>
 </html>

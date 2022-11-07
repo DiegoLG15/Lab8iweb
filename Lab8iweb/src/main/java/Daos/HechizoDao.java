@@ -88,6 +88,36 @@ public class HechizoDao {
             throw new RuntimeException(e);
         }
     }
+    public void actualizarHechizo(Hechizo hechizo) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/hr";
+        String sql = "UPDATE jobs SET job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, hechizo.getIdHechizo());
+            pstmt.setString(2, hechizo.getNombreHechizo());
+            pstmt.setInt(3, hechizo.getPotenciaDeHechizo());
+            pstmt.setInt(4, hechizo.getPrecisionDeHechizo());
+            pstmt.setInt(5, hechizo.getNivelAprendizaje());
+            pstmt.setInt(6, hechizo.getHechizoBase());
+            pstmt.setString(7, hechizo.getElemento());
+
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 
