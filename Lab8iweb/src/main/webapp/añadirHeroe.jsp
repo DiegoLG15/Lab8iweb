@@ -76,26 +76,43 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="genero" class="form-label">GÉNERO:</label>
-                                            <input type="text" class="form-control" id="genero" placeholder="genero" name="genero" >
+                                            <select class="form-select" id="genero" placeholder="genero" name="genero">
+                                                <option selected>Seleccione una opción</option>
+                                                <option value="Hombre">Hombre</option>
+                                                <option value="Mujer">Mujer</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="clase" class="form-label">CLASE:</label>
-                                            <input type="text" class="form-control" id="clase" placeholder="clase" name="clase" >
+                                            <select class="form-select" id="clase" placeholder="clase" name="clase">
+                                                <option selected>Seleccione una opción</option>
+                                                <option value="Normal">Normal</option>
+                                                <option value="Sayayin">Sayayin</option>
+                                                <option value="Hechicero">Hechicero</option>
+                                                <option value="Androide">Androide</option>
+                                                <option value="Namekusein">Namekusein</option>
+                                                <option value="Guerrero">Guerrero</option>
+                                                <option value="Zombie">Zombie</option>
+                                                <option value="Ninja">Ninja</option>
+                                                <option value="Fantasma">Fantasma</option>
+                                                <option value="Robot">Robot</option>
+                                            </select>
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="nivel" class="form-label">NIVEL:</label>
-                                            <input type="text" class="form-control" id="nivel" placeholder="nivel"
+                                            <input type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
                                                    name="nivel" >
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
                                             <label for="ataque" class="form-label">ATAQUE:</label>
-                                            <input type="text" class="form-control" id="ataque" placeholder="ataque"
+                                            <input type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
                                                    name="ataque" >
 
                                         </ul>
