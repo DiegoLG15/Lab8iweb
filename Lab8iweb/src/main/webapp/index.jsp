@@ -30,13 +30,6 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <h4><li><a href="#" class="nav-link px-2"><b style="color:#144C47">WIKI FANTASIA</b></a></li></h4>
-                <!--
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                </div>
-                -->
             </ul>
         </div>
     </div>
