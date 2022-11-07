@@ -41,7 +41,9 @@
         <br>
         <div class="card" style="width: 45rem; background-color:#00000090">
             <br>
-            <h1 style="font-family: monospace; font-weight: bold; color: white" class="card-title"><b>ÚLTIMA FANTASIA</b></h1>
+            <div class="card" style="width:45rem; background-color: rgba(255,255,255,0.60">
+                <h1 style="font-family: monospace; font-weight: bold; color: whitesmoke" class="card-title"><b>ÚLTIMA FANTASIA</b></h1>
+            </div>
             <br>
             <h5 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-text"><b> SELECCIONE UNA OPCIÓN </b></h5>
             <br>
