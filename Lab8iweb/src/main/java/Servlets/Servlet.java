@@ -31,7 +31,7 @@ public class Servlet extends HttpServlet {
 
         switch (accion) {
             case ("MenuPrincipal"):
-                view = request.getRequestDispatcher("Index.jsp");
+                view = request.getRequestDispatcher("index.jsp");
                 view.forward(request, response);
                 break;
             case ("MenuDeHeroes"):
