@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 @WebServlet(name = "Servlet", value = "/MenuServlet")
@@ -39,21 +40,11 @@ public class Servlet extends HttpServlet {
                 view = request.getRequestDispatcher("heroe.jsp");
                 view.forward(request, response);
                 break;
-            case "guardar":
+            case "crearHeroe":
 
-                heroe.setIdHeroe(Integer.parseInt("idHeroe"));
-                heroe.setNombre(request.getParameter("Nombres"));
-                heroe.setEdad(Integer.parseInt(request.getParameter("Edad")));
-                heroe.setNivel(Integer.parseInt(request.getParameter("Correo PUCP")));
-                heroe.setPuntosDeExperiencia(Double.parseDouble(request.getParameter("DNI")));
-                heroe.setPareja(request.getParameter("Celular"));
-                heroe.setGenero(request.getParameter("Categoría"));
-                heroe.setClase(request.getParameter("Rol"));
-                heroe.setAtaque(Integer.parseInt(request.getParameter("Codigo")));
+                view = request.getRequestDispatcher("añadirHeroe.jsp");
+                view.forward(request, response);
 
-                heroeDao.guardarHeroe(heroe);
-
-                response.sendRedirect(request.getContextPath()+"/MenuServlet");
                 break;
             case "editarHeroe":
                 idHeroe = request.getParameter("id");
@@ -99,17 +90,49 @@ public class Servlet extends HttpServlet {
 
         switch (accion) {
 
+            case "guardarHeroe":
+
+                heroe.setIdHeroe(Integer.parseInt(request.getParameter("ID Heroe")));
+                heroe.setNombre(request.getParameter("nombre"));
+                heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
+                heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
+
+                int nivel=Integer.parseInt(request.getParameter("nivel"));
+                DecimalFormat numeroFormateado = new DecimalFormat("#.00");
+                if(nivel>0 && nivel<=15){
+                    double puntos=Math.pow(nivel,3) *  (24+(nivel+1.0)/3.0)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }else if (nivel>=16 && nivel<=35){
+                    double puntos=Math.pow(nivel,3) *  (14+nivel)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }else if (nivel>=36 && nivel<=100){
+                    double puntos=Math.pow(nivel,3) *  (32+nivel/2)/50.0;
+                    double valorfinal = Math.round(puntos*100d)/100d;
+                    heroe.setPuntosDeExperiencia(valorfinal);
+                }
+                heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
+                heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
+                heroe.setGenero(Integer.parseInt(request.getParameter("genero")));
+                heroe.setClase(Integer.parseInt(request.getParameter("clase")));
+
+                heroeDao.guardarHeroe(heroe);
+
+                response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeHeroes");
+                break;
+
             case "actualizarHeroe":
 
                 heroe.setIdHeroe(Integer.parseInt(request.getParameter("ID Heroe"))); /*colocar los parametros en los botones del jsp*/
                 heroe.setNombre(request.getParameter("nombre"));
                 heroe.setEdad(Integer.parseInt(request.getParameter("edad")));
                 /*colocar if-else para genero y clase despues*/
-                heroe.setGenero(request.getParameter("genero"));
-                heroe.setClase(request.getParameter("clase"));
+                heroe.setGenero(Integer.parseInt(request.getParameter("genero")));
+                heroe.setClase(Integer.parseInt(request.getParameter("clase")));
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
-                heroe.setPareja(request.getParameter("pareja"));
+                heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
 
 
                 heroeDao.actualizarHeroe(heroe);
@@ -142,7 +165,7 @@ public class Servlet extends HttpServlet {
 
                 break;
 
-            case "buscar":
+            case "buscarHeroe":
                 String searchText = request.getParameter("searchText");
 
                 ArrayList<Usuarios> lista = daoUsuarios.buscarUsuarios(searchText);

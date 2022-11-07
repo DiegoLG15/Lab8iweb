@@ -6,9 +6,9 @@ public class Heroe {
     private int edad;
     private int nivel;
     private double puntosDeExperiencia;
-    private String pareja;
-    private String genero;
-    private String clase;
+    private int pareja;
+    private int genero;
+    private int clase;
     private int ataque;
 
     public int getIdHeroe() {
@@ -51,27 +51,27 @@ public class Heroe {
         this.puntosDeExperiencia = puntosDeExperiencia;
     }
 
-    public String getPareja() {
+    public int getPareja() {
         return pareja;
     }
 
-    public void setPareja(String pareja) {
+    public void setPareja(int pareja) {
         this.pareja = pareja;
     }
 
-    public String getGenero() {
+    public int getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(int genero) {
         this.genero = genero;
     }
 
-    public String getClase() {
+    public int getClase() {
         return clase;
     }
 
-    public void setClase(String clase) {
+    public void setClase(int clase) {
         this.clase = clase;
     }
 

@@ -18,7 +18,7 @@ public class HeroeDao {
         }
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "SELECT idHeroes,nombre,edad,nivel,puntosDeExperiencia,pareja,genero,clase,ataque FROM heroes,genero,claseheroe Where genero_idgenero=idgenero and claseHeroe_idclase=idclase;";
+        String sql = "SELECT idHeroes,nombre,edad,nivel,puntosDeExperiencia,pareja,genero_idgenero,claseHeroe_idclase,ataque FROM heroes";
 
         try(Connection connection = DriverManager.getConnection(url,"root","root");
             Statement stmt = connection.createStatement();
@@ -46,9 +46,9 @@ public class HeroeDao {
                     double valorfinal = Math.round(puntos*100d)/100d;
                     heroe.setPuntosDeExperiencia(valorfinal);
                 }
-                heroe.setPareja(rs.getString(6));
-                heroe.setGenero(rs.getString(7));
-                heroe.setClase(rs.getString(8));
+                heroe.setPareja(rs.getInt(6));
+                heroe.setGenero(rs.getInt(7));
+                heroe.setClase(rs.getInt(8));
                 heroe.setAtaque (rs.getInt(9));
 
                 listaHeroes.add(heroe);
@@ -78,10 +78,10 @@ public class HeroeDao {
             pstmt.setInt(3,heroe.getEdad());
             pstmt.setInt(4,heroe.getNivel());
             pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
-            pstmt.setString(6,heroe.getPareja());
-            pstmt.setString(7,heroe.getGenero());
-            pstmt.setString(8,heroe.getClase());
-            pstmt.setNull(9, heroe.getAtaque());
+            pstmt.setInt(6,heroe.getPareja());
+            pstmt.setInt(7,heroe.getGenero());
+            pstmt.setInt(8,heroe.getClase());
+            pstmt.setInt(9, heroe.getAtaque());
 
             pstmt.executeUpdate();
 
@@ -115,9 +115,9 @@ public class HeroeDao {
                     heroe.setEdad(rs.getInt(3));
                     heroe.setNivel(rs.getInt(  4));
                     heroe.setPuntosDeExperiencia(rs.getInt(5));
-                    heroe.setPareja(rs.getString(6));
-                    heroe.setGenero(rs.getString(7));
-                    heroe.setClase(rs.getString(8));
+                    heroe.setPareja(rs.getInt(6));
+                    heroe.setGenero(rs.getInt(7));
+                    heroe.setClase(rs.getInt(8));
                     heroe.setAtaque (rs.getInt(9));
                 }
             }
@@ -148,10 +148,11 @@ public class HeroeDao {
             pstmt.setInt(3,heroe.getEdad());
             pstmt.setInt(4,heroe.getNivel());
             pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
-            pstmt.setString(6,heroe.getPareja());
-            pstmt.setString(7,heroe.getGenero());
-            pstmt.setString(8,heroe.getClase());
+            pstmt.setInt(6,heroe.getPareja());
+            pstmt.setInt(7,heroe.getGenero());
+            pstmt.setInt(8,heroe.getClase());
             pstmt.setInt(9, heroe.getAtaque());
+            pstmt.setInt(10,heroe.getIdHeroe());
 
             pstmt.executeUpdate();
 
