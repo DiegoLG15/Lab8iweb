@@ -20,6 +20,10 @@
         <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <script src="https://kit.fontawesome.com/600382161a.js" crossorigin="anonymous"></script>
         <title>Heroes</title>
         <style>
@@ -31,7 +35,7 @@
                 background-attachment: fixed;
                 margin: 0;
                 height: 100vh;
-                bgcolor = "#800000";
+                bgcolor : "#800000";
             }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -64,8 +68,8 @@
                         <h4 style="text-align: center; color: black"><b>LISTA DE HEROES</b></h4>
                     </div>
                     <div>
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar"  >
+                        <form method="post" class="d-flex input-group w-auto" role="search" id="floatingInput" aria-describedby="search-addon" action="<%=request.getContextPath()%>/MenuServlet?accion=buscarHeroe">
+                            <input name="searchText" class="form-control me-2" type="text" placeholder="Buscar por nombre de héroe" aria-label="Search"  >
                             <button class="btn btn-outline-light" type="submit" style="color: darkslategray; border:1px solid white">Buscar</button>
                         </form>
                         <br>
@@ -135,7 +139,7 @@
                                     </a>
                                     <a type="button" class="btn btn-danger"
                                        onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
-                                       href="<%=request.getContextPath()%>/MenuServlet?accion=editar&id=<%=heroe.getIdHeroe()%>">
+                                       href="<%=request.getContextPath()%>/MenuServlet?accion=borrarHeroe&id=<%=heroe.getIdHeroe()%>">
                                         <i class="bi bi-trash"></i></a>
                                 </td>
 
@@ -153,7 +157,7 @@
             </div>
         </div>
         <br>
-        <a class="btn btn-primary" href="lab8.html" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+        <a class="btn btn-primary" href="<%=request.getContextPath()%>/MenuServlet" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
         <br><br>
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>

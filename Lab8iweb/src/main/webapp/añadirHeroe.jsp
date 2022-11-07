@@ -62,7 +62,7 @@
 
 
                                             <label for="nombre" class="form-label" >NOMBRE</label>
-                                            <input type="text" class="form-control" id="nombre" placeholder="nombre"
+                                            <input maxlength="10" type="text" class="form-control" id="nombre" placeholder="nombre"
                                                    name="nombre" >
 
                                         </ul>
@@ -70,7 +70,7 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="edad" class="form-label">EDAD:</label>
-                                            <input type="text" class="form-control" id="edad" placeholder="edad"
+                                            <input type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
                                                    name="edad" >
                                         </ul>
                                         <ul class="list-group list-group-flush">

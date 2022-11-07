@@ -31,21 +31,7 @@ public class HeroeDao {
                 heroe.setNombre(rs.getString(2));
                 heroe.setEdad(rs.getInt(3));
                 heroe.setNivel(rs.getInt(  4));
-                int nivel=heroe.getNivel();
-                DecimalFormat numeroFormateado = new DecimalFormat("#.00");
-                if(nivel>0 && nivel<=15){
-                    double puntos=Math.pow(nivel,3) *  (24+(nivel+1.0)/3.0)/50.0;
-                    double valorfinal = Math.round(puntos*100d)/100d;
-                    heroe.setPuntosDeExperiencia(valorfinal);
-                }else if (nivel>=16 && nivel<=35){
-                    double puntos=Math.pow(nivel,3) *  (14+nivel)/50.0;
-                    double valorfinal = Math.round(puntos*100d)/100d;
-                    heroe.setPuntosDeExperiencia(valorfinal);
-                }else if (nivel>=36 && nivel<=100){
-                    double puntos=Math.pow(nivel,3) *  (32+nivel/2)/50.0;
-                    double valorfinal = Math.round(puntos*100d)/100d;
-                    heroe.setPuntosDeExperiencia(valorfinal);
-                }
+                heroe.setPuntosDeExperiencia(5);
                 heroe.setPareja(rs.getInt(6));
                 heroe.setGenero(rs.getInt(7));
                 heroe.setClase(rs.getInt(8));
@@ -87,6 +73,30 @@ public class HeroeDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public void borrarHeroe(int idHeroes){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "DELETE from heroes WHERE idHeroes = ?";
+
+        try(Connection connection = DriverManager.getConnection(url,"root","root");
+            PreparedStatement pstmt=connection.prepareStatement(sql))
+        {
+
+            pstmt.setInt(1,idHeroes);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
     public Heroe buscarPorId(int idHeroe){
 
@@ -160,5 +170,47 @@ public class HeroeDao {
         }
 
 
+    }
+    public ArrayList<Heroe> buscarHeroes(String nombreuser){
+        ArrayList<Heroe> listaHeroes = new ArrayList<>();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "SELECT * FROM heroes WHERE lower(nombre) like ?";
+
+        try(Connection conn = DriverManager.getConnection(url, "root", "root");
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%"+nombreuser+"%");
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    Heroe heroe = new Heroe();
+
+                    heroe.setIdHeroe(rs.getInt(1));
+                    heroe.setNombre(rs.getString(2));
+                    heroe.setEdad(rs.getInt(3));
+                    heroe.setNivel(rs.getInt(  4));
+                    heroe.setPuntosDeExperiencia(5);
+                    heroe.setPareja(rs.getInt(6));
+                    heroe.setGenero(rs.getInt(7));
+                    heroe.setClase(rs.getInt(8));
+                    heroe.setAtaque (rs.getInt(9));
+
+                    listaHeroes.add(heroe);
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+
+        return listaHeroes;
     }
 }

@@ -46,6 +46,12 @@ public class Servlet extends HttpServlet {
                 view.forward(request, response);
 
                 break;
+            case "borrarHeroe":
+                idHeroe = request.getParameter("id");
+                heroeDao.borrarHeroe(Integer.parseInt(idHeroe));
+
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
+                break;
             case "editarHeroe":
                 idHeroe = request.getParameter("id");
                 heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroe) );
@@ -140,40 +146,17 @@ public class Servlet extends HttpServlet {
 
                 break;
 
-            /*case "actualizarParcial":
-                String jobId2 = request.getParameter("jobId");
-                String jobTitle2 = request.getParameter("jobTitle");
-                String minSalaryStr2 = request.getParameter("minSalary");
-                int minSalary2 = Integer.parseInt(minSalaryStr2);
-
-                try {
-                    daoJob.actualizarParcial(jobId2, jobTitle2, minSalary2);
-                    response.sendRedirect(request.getContextPath() + "/JobServlet");
-                } catch (SQLException e) {
-                    job = daoJob.buscarPorId(jobId2);
-
-                    if (job != null) { //abro el form para editar
-                        request.setAttribute("job", job);
-                        request.setAttribute("error","El texto no puede tener mas de 255 caractéres");
-                        RequestDispatcher requestDispatcher = request.getRequestDispatcher("jobs/formEditarParcial.jsp");
-                        requestDispatcher.forward(request, response);
-                    } else { //id no encontrado
-                        response.sendRedirect(request.getContextPath() + "/JobServlet");
-                    }
-                }
-
-                break;
 
             case "buscarHeroe":
                 String searchText = request.getParameter("searchText");
 
-                ArrayList<Usuarios> lista = daoUsuarios.buscarUsuarios(searchText);
-                request.setAttribute("lista", lista);
+                ArrayList<Heroe> listaHeroe = heroeDao.buscarHeroes(searchText);
+                request.setAttribute("listaHeroes", listaHeroe);
 
-                requestDispatcher = request.getRequestDispatcher("AdminListaUsers.jsp");
+                requestDispatcher = request.getRequestDispatcher("heroe.jsp");
                 requestDispatcher.forward(request, response);
 
-                break;*/
+                break;
         }
     }
 

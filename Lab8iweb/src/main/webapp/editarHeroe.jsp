@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <form method="post" action="<%=request.getContextPath()%>/MenuServlet?accion=actualizarHeroe" class="row g-3">
                                     <td style="padding-left: 2rem;">
-                                        <input type="hidden" class="form-control" id="ID Heroe" placeholder="ID Heroe"
+                                        <input maxlength="10" type="hidden" class="form-control" id="ID Heroe" placeholder="ID Heroe"
                                                name="ID Heroe" value="<%=heroe.getIdHeroe()%>">
                                         <ul class="list-group list-group-flush">
 
@@ -72,7 +72,7 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="edad" class="form-label">EDAD:</label>
-                                            <input type="text" class="form-control" id="edad" placeholder="edad"
+                                            <input type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
                                                    name="edad" value="<%=heroe.getEdad()%>">
                                         </ul>
                                         <ul class="list-group list-group-flush">
