@@ -74,7 +74,7 @@
                             <h5 class="card-title">HECHIZOS</h5>
                             <p class="card-text"> Los hechizos son poderosas armas elementales que se usan
                                 para la guerra. </p>
-                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHechizos class="btn btn-dark">Conoce mas</a>
+                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeHechizos" class=" btn btn-dark">Conoce mas</a>
                         </div>
                     </div>
                 </div>
