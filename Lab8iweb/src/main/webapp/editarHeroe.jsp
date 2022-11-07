@@ -135,7 +135,7 @@
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
-
+                                            <%he%>
                                             <label for="pareja" class="form-label">PAREJA:</label>
                                             <input type="text" class="form-control" id="pareja" placeholder="pareja"
                                                    name="pareja" value="<%=heroe.getPareja()%>">

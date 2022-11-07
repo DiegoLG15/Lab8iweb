@@ -49,6 +49,8 @@ public class Servlet extends HttpServlet {
             case "editarHeroe":
                 idHeroe = request.getParameter("id");
                 heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroe) );
+                /*ArrayList lista=heroeDao.obtenerlistaHeroes();
+                int cantidad=lista.size();*/
 
                 if (heroe != null) {
                     request.setAttribute("hereoeEditar", heroe);
@@ -57,6 +59,11 @@ public class Servlet extends HttpServlet {
                 } else {
                     response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
                 }
+                break;
+            case ("borrarHeroe"):
+                idHeroe = request.getParameter("id");
+                heroeDao.borrarHeroe(Integer.parseInt(idHeroe));
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
                 break;
             case ("MenuDeEnemigos"):
 

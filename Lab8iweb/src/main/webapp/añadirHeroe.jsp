@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Beans.Heroe" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Daos.HeroeDao" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +118,9 @@
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
-
+                                            <%HeroeDao heroeDao=new HeroeDao();
+                                            int cantidad=heroeDao.cantidadNullsParejas();%>
+                                            <%=cantidad%>
                                             <label for="pareja" class="form-label">PAREJA:</label>
                                             <input type="text" class="form-control" id="pareja" placeholder="pareja"
                                                    name="pareja" >
