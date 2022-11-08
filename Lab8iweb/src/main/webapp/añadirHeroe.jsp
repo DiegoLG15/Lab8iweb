@@ -118,15 +118,15 @@
                                     <td style="padding-left: 2rem;">
                                         <ul class="list-group list-group-flush">
                                             <label for="nombre" class="form-label"><b>NOMBRE:</b></label>
-                                            <input required maxlength="10" type="text" class="form-control" id="Nombre" placeholder="Nombre"
-                                                   name="Nombre" >
+                                            <input required maxlength="10" type="text" class="form-control" id="nombre" placeholder="nombre"
+                                                   name="nombre" >
                                         </ul>
 
                                         <ul class="list-group list-group-flush">
 
                                             <label for="edad" class="form-label"><b>EDAD:</b></label>
-                                            <input required type="number" min="8" max="999" class="form-control" id="Edad" placeholder="Edad"
-                                                   name="Edad" >
+                                            <input required type="number" min="8" max="999" class="form-control" id="edad" placeholder="edad"
+                                                   name="edad" >
                                         </ul>
                                         <ul class="list-group list-group-flush">
 
@@ -142,7 +142,7 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="clase" class="form-label"><b>CLASE:</b></label>
-                                            <select required class="form-select" id="clase" placeholder="clase" name="Clase">
+                                            <select required class="form-select" id="clase" placeholder="clase" name="clase">
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="Sayayin">Sayayin</option>
                                                 <option value="Hechicero">Hechicero</option>
@@ -159,21 +159,30 @@
                                         <ul class="list-group list-group-flush">
 
                                             <label for="nivel" class="form-label"><b>NIVEL:</b></label>
-                                            <input required type="number" min="1" max="100" class="form-control" id="nivel" placeholder="Nivel"
-                                                   name="Nivel" >
+                                            <input required type="number" min="1" max="100" class="form-control" id="nivel" placeholder="nivel"
+                                                   name="nivel" >
                                         </ul>
                                         <ul class="list-group list-group-flush">
                                             <label for="ataque" class="form-label"><b>ATAQUE:</b></label>
-                                            <input required type="number" min="1" class="form-control" id="ataque" placeholder="Ataque"
-                                                   name="Ataque" >
+                                            <input required type="number" min="1" class="form-control" id="ataque" placeholder="ataque"
+                                                   name="ataque" >
                                         </ul>
                                         <ul class="list-group list-group-flush">
                                             <%HeroeDao heroeDao=new HeroeDao();
-                                            int cantidad=heroeDao.cantidadNullsParejas();%>
-                                            <%=cantidad%>
-                                            <label for="pareja" class="form-label"><b>PAREJA:</b></label>
-                                            <input required type="text" class="form-control" id="Pareja" placeholder="Pareja"
-                                                   name="Pareja" >
+                                            ArrayList<Heroe> listaHeroes=heroeDao.cantidadNullsParejas();%>
+
+
+                                            <label for="pareja" class="form-label">PAREJA:</label>
+                                            <select required class="form-select" id="pareja" placeholder="pareja" name="pareja">
+                                                <option value="">Seleccione una opción</option>
+                                                <option value="0">Sin pareja</option>
+                                                <%for(Heroe heroe: listaHeroes){%>
+
+                                                <option value="<%=heroe.getIdHeroe()%>"><%= heroe.getIdHeroe()%>: <%=heroe.getNombre() %></option>
+
+                                                <%}%>
+                                            </select>
+
                                         </ul>
                                         <ul class="list-group list-group-flush">
                                             <div class="d-grid gap-2 col-6 col-lg-4 col-xl-3 mx-auto">

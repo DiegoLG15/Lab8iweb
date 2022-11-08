@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Beans.Heroe" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Daos.HeroeDao" %>
 <%
     Heroe heroe = (Heroe) request.getAttribute("hereoeEditar");
 %>
@@ -100,6 +101,7 @@
             <section class="section profile">
                 <div class="container">
                     <div class="container-fluid " style="background-color: rgba(255,255,255,0.6);width: 65%">
+
                         <div class="row">
                             <div >
                                 <center>
@@ -193,9 +195,18 @@
 
                                         </ul>
                                         <ul class="list-group list-group-flush">
-                                            <label for="pareja" class="form-label"><b>PAREJA:</b></label>
-                                            <input type="text" class="form-control" id="pareja" placeholder="pareja"
-                                                   name="pareja" value="<%=heroe.getPareja()%>">
+                                            <%HeroeDao heroeDao=new HeroeDao();
+                                                ArrayList<Heroe> listaHeroes=heroeDao.cantidadNullsParejas();%>
+                                            <label for="pareja" class="form-label">PAREJA:</label>
+                                            <select required class="form-select" id="pareja" placeholder="pareja" name="pareja">
+                                                <option value="">Seleccione una opción</option>
+                                                <option value="0">Sin pareja</option>
+                                                <%for(Heroe heroe2: listaHeroes){%>
+                                                    <%if (heroe.getIdHeroe()!=heroe2.getIdHeroe()){%>
+                                                    <option value="<%=heroe2.getIdHeroe()%>"><%= heroe2.getIdHeroe()%>: <%=heroe2.getNombre() %></option>
+                                                    <%}%>
+                                                <%}%>
+                                            </select>
 
                                         </ul>
                                         <ul class="list-group list-group-flush">

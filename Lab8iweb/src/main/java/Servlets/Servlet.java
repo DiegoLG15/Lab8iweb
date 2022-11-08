@@ -159,7 +159,12 @@ public class Servlet extends HttpServlet {
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
 
+
                 heroeDao.guardarHeroe(heroe);
+
+                /*heroeDao.actualizarParejaHeroe(heroe.getIdHeroe(),heroe.getPareja()); no funciona*/
+
+
 
                 response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeHeroes");
                 break;
@@ -205,11 +210,16 @@ public class Servlet extends HttpServlet {
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
 
 
+                heroeDao.actualizarParejaHeroe(heroe.getIdHeroe(),heroe.getPareja());
+
+
                 heroeDao.actualizarHeroe(heroe);
+
 
                 response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
 
                 break;
+
             case "guardarHechizo":
 
                 String hechizoID = request.getParameter("idHechizo");

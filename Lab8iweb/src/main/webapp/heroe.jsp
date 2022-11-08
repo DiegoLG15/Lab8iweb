@@ -197,7 +197,15 @@
                                     <%=heroe.getAtaque()%>
                                 </td>
                                 <td style="padding-left: 2rem; text-align: center">
-                                    <%=heroe.getPareja()%>
+                                    <%for(Heroe heroe2: listaHeroes){
+                                        if (heroe.getPareja()==heroe2.getIdHeroe()){%>
+                                            <%=heroe2.getNombre()%>
+                                    <%}%>
+                                    <%}
+                                    if (heroe.getPareja()==0){%>
+                                        -
+                                    <%}%>
+
                                 </td>
                                 <td style="padding-left: 2rem; text-align: center"><%
                                     int nivel= heroe.getNivel();

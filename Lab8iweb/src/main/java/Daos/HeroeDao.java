@@ -1,6 +1,8 @@
 package Daos;
 
 import Beans.Heroe;
+import Servlets.Servlet;
+import jakarta.servlet.RequestDispatcher;
 
 import java.sql.*;
 import java.text.DecimalFormat;
@@ -45,7 +47,7 @@ public class HeroeDao {
         return listaHeroes;
     }
 
-    public int cantidadNullsParejas(){
+    public ArrayList<Heroe> cantidadNullsParejas(){
 
         ArrayList<Heroe> listaHeroes = new ArrayList<>();
 
@@ -75,13 +77,18 @@ public class HeroeDao {
                 heroe.setClase(rs.getInt(8));
                 heroe.setAtaque (rs.getInt(9));
 
-                listaHeroes.add(heroe);
+                if (heroe.getPareja()==0){
+                    listaHeroes.add(heroe);
+                }
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaHeroes.size();
+        return listaHeroes;
     }
+
+
 
     public void guardarHeroe(Heroe heroe){
 
@@ -105,6 +112,43 @@ public class HeroeDao {
             pstmt.setInt(6,heroe.getGenero());
             pstmt.setInt(7,heroe.getClase());
             pstmt.setInt(8, heroe.getAtaque());
+
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void actualizarParejaHeroe(int idHeroe,int parejaId){
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "UPDATE heroes SET pareja = ? WHERE idHeroes = ?";
+
+        try(Connection connection = DriverManager.getConnection(url,"root","root");
+            PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            ArrayList<Heroe> listaHeroes=obtenerlistaHeroes();
+
+            for (Heroe heroe:listaHeroes){
+                if (heroe.getIdHeroe()==parejaId){
+                    heroe.setPareja(idHeroe);
+                    pstmt.setInt(1,idHeroe);
+                    pstmt.setInt(2,parejaId);
+                } else if (heroe.getIdHeroe()==0) {
+                    pstmt.setNull(1,Types.INTEGER);
+                    pstmt.setInt(2, parejaId);
+                }
+            }
+
 
             pstmt.executeUpdate();
 
