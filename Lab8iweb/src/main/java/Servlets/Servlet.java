@@ -3,9 +3,11 @@ package Servlets;
 import Beans.Enemigo;
 import Beans.Hechizo;
 import Beans.Heroe;
+import Beans.Objeto;
 import Daos.EnemigoDao;
 import Daos.HechizoDao;
 import Daos.HeroeDao;
+import Daos.ObjetoDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -26,8 +28,12 @@ public class Servlet extends HttpServlet {
         Heroe heroe= new Heroe();
         HechizoDao hechizoDao = new HechizoDao();
         Hechizo hechizo= new Hechizo();
+        ObjetoDao objetoDao=new ObjetoDao();
+        Objeto objeto=new Objeto();
+
         String idHeroe;
         String idHechizo;
+        String idObjeto;
 
         switch (accion) {
             case ("MenuPrincipal"):
@@ -88,6 +94,13 @@ public class Servlet extends HttpServlet {
                 hechizoDao.borrarHechizo(Integer.parseInt(idHechizo));
                 response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
                 break;
+            case ("MenuDeObjetos"):
+
+                request.setAttribute("listaObjetos", objetoDao.obtenerlistaObjetos());
+                view = request.getRequestDispatcher("listaObjetos.jsp");
+                view.forward(request, response);
+                break;
+
         }
     }
 

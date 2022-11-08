@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/Daos/EnemigoDao.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Daos/HechizoDao.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Daos/HeroeDao.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Daos/ObjetoDao.java" dialect="GenericSQL" />
   </component>
 </project>

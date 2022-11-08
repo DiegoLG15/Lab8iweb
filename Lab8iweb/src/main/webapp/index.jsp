@@ -86,7 +86,7 @@
                         <div class="card-body">
                             <h5 class="card-title">OBJETOS</h5>
                             <p class="card-text">Lista de objetos que utilizan los heroes y los enemigos en la guerra.</p>
-                            <a href="lab8_heroes.html " class="btn btn-dark">Conoce mas</a>
+                            <a href="<%=request.getContextPath()%>/MenuServlet?accion=MenuDeObjetos" class="btn btn-dark">Conoce mas</a>
                         </div>
                     </div>
                 </div>
