@@ -37,7 +37,7 @@
       </div>
     </div>
   </header>
-  <br><br><br><br>
+
   <main id="main">
     <section class="section profile">
       <div class="container">
