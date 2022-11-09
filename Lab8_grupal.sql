@@ -35,7 +35,7 @@ CREATE TABLE `clase_enemigos` (
 
 LOCK TABLES `clase_enemigos` WRITE;
 /*!40000 ALTER TABLE `clase_enemigos` DISABLE KEYS */;
-INSERT INTO `clase_enemigos` VALUES (1,'normal');
+INSERT INTO `clase_enemigos` VALUES (1,'Dragon'),(2,'Fantasma'),(3,'Demonio'),(4,'Pez'),(5,'Bestia'),(6,'Ave');
 /*!40000 ALTER TABLE `clase_enemigos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,6 +64,7 @@ CREATE TABLE `clase_enemigos_has_elemento` (
 
 LOCK TABLES `clase_enemigos_has_elemento` WRITE;
 /*!40000 ALTER TABLE `clase_enemigos_has_elemento` DISABLE KEYS */;
+INSERT INTO `clase_enemigos_has_elemento` VALUES (1,1,1),(2,2,40),(3,3,110);
 /*!40000 ALTER TABLE `clase_enemigos_has_elemento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +103,7 @@ CREATE TABLE `elemento` (
   `idelemento` int NOT NULL AUTO_INCREMENT,
   `elemento` varchar(45) NOT NULL,
   PRIMARY KEY (`idelemento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,6 +112,7 @@ CREATE TABLE `elemento` (
 
 LOCK TABLES `elemento` WRITE;
 /*!40000 ALTER TABLE `elemento` DISABLE KEYS */;
+INSERT INTO `elemento` VALUES (1,'Fuego'),(2,'Tierra'),(3,'Agua'),(4,'Viento'),(5,'Void');
 /*!40000 ALTER TABLE `elemento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,10 +129,10 @@ CREATE TABLE `enemigos` (
   `ataque` int NOT NULL,
   `exp_x_derrota` int NOT NULL,
   `objeto_x_derrota` varchar(45) NOT NULL,
-  `genero_idgenero` int NOT NULL,
+  `genero_idgenero` int DEFAULT NULL,
   `probabilidad_x_objeto` int NOT NULL,
-  `objeto_idobjeto` int NOT NULL,
-  `clase_enemigos_idclase_enemigos` int NOT NULL,
+  `objeto_idobjeto` int DEFAULT NULL,
+  `clase_enemigos_idclase_enemigos` int DEFAULT NULL,
   PRIMARY KEY (`idenemigos`),
   KEY `fk_enemigos_genero1_idx` (`genero_idgenero`),
   KEY `fk_enemigos_objeto1_idx` (`objeto_idobjeto`),
@@ -147,6 +149,7 @@ CREATE TABLE `enemigos` (
 
 LOCK TABLES `enemigos` WRITE;
 /*!40000 ALTER TABLE `enemigos` DISABLE KEYS */;
+INSERT INTO `enemigos` VALUES (1,'Voldemor',1,1,'UAV',1,1,1,1),(2,'nappa',20,20,'Espada',2,40,2,2),(3,'raditz',60,30,'Escudo',3,60,3,3);
 /*!40000 ALTER TABLE `enemigos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +197,7 @@ CREATE TABLE `hechizos` (
   KEY `fk_hechizos_elemento1_idx` (`elemento_idelemento`),
   CONSTRAINT `fk_hechizos_elemento1` FOREIGN KEY (`elemento_idelemento`) REFERENCES `elemento` (`idelemento`),
   CONSTRAINT `fk_hechizos_hechizos1` FOREIGN KEY (`hechizos_idhechizos`) REFERENCES `hechizos` (`idhechizos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,6 +206,7 @@ CREATE TABLE `hechizos` (
 
 LOCK TABLES `hechizos` WRITE;
 /*!40000 ALTER TABLE `hechizos` DISABLE KEYS */;
+INSERT INTO `hechizos` VALUES (1,'Lava',1,1,1,NULL,1),(2,'wingardium',22,2,2,2,2),(3,'pOTTER',23,43,2,3,1);
 /*!40000 ALTER TABLE `hechizos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +234,7 @@ CREATE TABLE `heroes` (
   CONSTRAINT `fk_Heroes_claseHeroe1` FOREIGN KEY (`claseHeroe_idclase`) REFERENCES `claseheroe` (`idclase`),
   CONSTRAINT `fk_Heroes_genero1` FOREIGN KEY (`genero_idgenero`) REFERENCES `genero` (`idgenero`),
   CONSTRAINT `fk_Heroes_Heroes1` FOREIGN KEY (`pareja`) REFERENCES `heroes` (`idHeroes`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,35 +243,8 @@ CREATE TABLE `heroes` (
 
 LOCK TABLES `heroes` WRITE;
 /*!40000 ALTER TABLE `heroes` DISABLE KEYS */;
-INSERT INTO `heroes` VALUES (1,'Trunks',40,7,0,95,2,2,10),(2,'vegeta',60,77,0,NULL,2,2,23),(56,'messi',12,100,0,NULL,1,1,1),(75,'pokem',1,1,0.49,NULL,1,3,0),(76,'cr7',1,1,0.49,NULL,2,4,1),(77,'max10',1,1,0.49,NULL,1,5,1),(78,'pokemooooo',8,1,0.49,2,3,6,1),(80,'Dark',45,1,0.49,NULL,1,9,1),(82,'Kakashi',40,50,0,NULL,2,8,1),(83,'neji',20,99,1571884.38,NULL,1,8,10000),(84,'Bardock',50,50,142500,NULL,1,2,1),(88,'gf',12,1,0.49,NULL,1,1,1),(89,'1',9,1,0.49,NULL,1,2,1),(90,'qwe',34,1,0.49,NULL,1,3,5),(91,'asd',32,32,30146.56,NULL,1,3,2),(94,'neymar',45,5,65,NULL,1,2,1),(95,'luz',12,99,1571884.38,1,1,3,1),(96,'bale',12,40,66560,NULL,1,2,5),(97,'bale',12,40,66560,109,1,2,5),(98,'guy',12,5,65,NULL,1,3,1),(99,'max11',12,99,1571884.38,NULL,1,3,5),(100,'digi',12,5,65,NULL,2,4,1),(101,'neymar',11,40,66560,NULL,2,2,1),(102,'Bardock',8,99,1571884.38,NULL,1,4,1),(103,'digimooooo',12,40,66560,NULL,1,2,1),(104,'digimooooo',12,40,66560,NULL,1,2,1),(105,'digimooooo',12,99,1571884.38,NULL,1,2,5),(106,'neymar',8,40,66560,56,1,2,5),(107,'GAA',12,5,65,104,3,3,5),(108,'neymar',12,5,65,98,1,2,1),(109,'KAKAROTO',8,40,0,97,2,3,5);
+INSERT INTO `heroes` VALUES (1,'Trunks',40,7,0,NULL,1,2,10),(2,'vegeta',60,77,0,NULL,1,2,23),(56,'messi',12,100,0,NULL,1,1,1),(76,'cr7',9,1,0,NULL,1,1,1),(77,'max10',1,1,0.49,NULL,1,5,1),(80,'Dark',45,1,0.49,NULL,1,9,1),(82,'Kakashi',40,50,0,NULL,2,1,1),(83,'neji',20,99,1571884.38,NULL,1,8,10000),(84,'Bardock',50,50,142500,NULL,1,2,1),(88,'gf',12,1,0.49,NULL,1,1,1),(89,'1',9,1,0.49,NULL,1,2,1),(90,'aaaaa',34,1,0,NULL,1,3,5),(91,'asd',32,32,30146.56,NULL,1,3,2),(94,'neymar',45,5,65,NULL,1,2,1),(95,'luz',12,99,1571884.38,NULL,1,3,1),(96,'bale',12,40,66560,NULL,1,2,5),(97,'bale',12,40,66560,NULL,1,2,5),(98,'guy',12,5,65,NULL,1,3,1),(99,'max11',12,99,1571884.38,NULL,1,3,5),(100,'digi',12,5,65,NULL,2,4,1),(101,'neymar',11,40,66560,NULL,2,2,1),(102,'Bardock',8,99,1571884.38,NULL,1,4,1),(103,'digimooooo',12,40,66560,NULL,1,2,1),(104,'digimooooo',12,40,66560,NULL,1,2,1),(105,'digimooooo',12,99,1571884.38,NULL,1,2,5),(106,'neymar',8,40,66560,NULL,1,2,5),(107,'GAA',12,5,65,NULL,3,3,5),(108,'neymar',12,5,65,NULL,1,2,1),(109,'KAKAROTO',8,40,0,NULL,2,3,5),(114,'eeeeee',12,12,979.2,NULL,1,3,12),(115,'sol',12,12,979.2,NULL,1,7,12),(116,'id',34,12,979.2,94,1,7,1),(117,'id2',21,12,979.2,NULL,1,8,12),(118,'id44',12,40,66560,NULL,1,5,12),(119,'aaaaa',11,11,745.36,NULL,2,3,1),(121,'aaaaaaa',12,12,979.2,NULL,1,4,12),(122,'aaa',12,12,979.2,NULL,1,5,12);
 /*!40000 ALTER TABLE `heroes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `heroes_has_heroes`
---
-
-DROP TABLE IF EXISTS `heroes_has_heroes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `heroes_has_heroes` (
-  `heroes_idHeroes` int NOT NULL,
-  `heroes_idHeroes1` int NOT NULL,
-  PRIMARY KEY (`heroes_idHeroes`,`heroes_idHeroes1`),
-  KEY `fk_heroes_has_heroes_heroes2_idx` (`heroes_idHeroes1`),
-  KEY `fk_heroes_has_heroes_heroes1_idx` (`heroes_idHeroes`),
-  CONSTRAINT `fk_heroes_has_heroes_heroes1` FOREIGN KEY (`heroes_idHeroes`) REFERENCES `heroes` (`idHeroes`),
-  CONSTRAINT `fk_heroes_has_heroes_heroes2` FOREIGN KEY (`heroes_idHeroes1`) REFERENCES `heroes` (`idHeroes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `heroes_has_heroes`
---
-
-LOCK TABLES `heroes_has_heroes` WRITE;
-/*!40000 ALTER TABLE `heroes_has_heroes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `heroes_has_heroes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -279,8 +256,9 @@ DROP TABLE IF EXISTS `inventario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventario` (
   `idinventario` int NOT NULL,
-  `objeto_idobjeto` int NOT NULL,
-  `heroes_idHeroes` int NOT NULL,
+  `objeto_idobjeto` int DEFAULT NULL,
+  `heroes_idHeroes` int DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
   PRIMARY KEY (`idinventario`),
   KEY `fk_inventario_objeto1_idx` (`objeto_idobjeto`),
   KEY `fk_inventario_heroes1_idx` (`heroes_idHeroes`),
@@ -295,6 +273,7 @@ CREATE TABLE `inventario` (
 
 LOCK TABLES `inventario` WRITE;
 /*!40000 ALTER TABLE `inventario` DISABLE KEYS */;
+INSERT INTO `inventario` VALUES (121,3,1,2),(122,4,2,3);
 /*!40000 ALTER TABLE `inventario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,9 +289,8 @@ CREATE TABLE `objeto` (
   `objeto` varchar(45) NOT NULL,
   `descripcion` varchar(150) NOT NULL,
   `peso` double NOT NULL,
-  `cantidad` int NOT NULL,
   PRIMARY KEY (`idobjeto`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,13 +299,9 @@ CREATE TABLE `objeto` (
 
 LOCK TABLES `objeto` WRITE;
 /*!40000 ALTER TABLE `objeto` DISABLE KEYS */;
-INSERT INTO `objeto` VALUES (1,'Espada','Permite cortar a tus enemigos',5,0),(2,'Hacha','Puedes romper arboles',1,0),(3,'Semilla','Permite recuperar gran parte de la salud',0.3,0),(4,'Escudo','Te protege de ataques enemigos ',2,0),(5,'Pistola','Arma a distancia que dispara balas',0.5,0),(6,'Lanzacohetes','Arma muy potente que aniquila enemigos',4,0),(7,'Comida','Recupera energias',1,0),(8,'UAV','Revela la ubicacion de los enemigos',1,0),(9,'Celular','Permite llamar a aliados',0.5,0),(10,'Trophy','PErmite protegerte de elementos explosivos',1.5,0);
+INSERT INTO `objeto` VALUES (1,'Espada','Permite cortar a tus enemigos',5),(2,'Hacha','Puedes cortar arboles',1),(3,'Semilla','Permite recuperar gran parte de la salud',0.3),(4,'Escudo','Te protege de ataques enemigos ',2),(5,'Pistola','Arma a distancia que dispara balas',0.5),(6,'Lanzacohetes','Arma muy potente que aniquila enemigos',4),(7,'Comida','Recupera energias',1),(8,'UAV','Revela la ubicacion de los enemigos',1),(9,'Celular','Permite llamar a aliados',0.5),(10,'Trophy','Permite protegerte de elementos explosivos',1.5);
 /*!40000 ALTER TABLE `objeto` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'lab8'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -338,4 +312,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-07 23:49:06
+-- Dump completed on 2022-11-09 18:46:48
