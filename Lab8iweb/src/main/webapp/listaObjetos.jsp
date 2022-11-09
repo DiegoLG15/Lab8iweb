@@ -1,8 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Beans.Objeto" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="Beans.Heroe" %>
 <%
     ArrayList<Objeto> listaObjetos = (ArrayList<Objeto>) request.getAttribute("listaObjetos");
+    ArrayList<Heroe> listaHeroes= (ArrayList<Heroe>) request.getAttribute("inventarioHeroe");
 %>
 <!DOCTYPE html>
 <html lang="en">

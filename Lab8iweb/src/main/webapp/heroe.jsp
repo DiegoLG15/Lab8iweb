@@ -238,7 +238,7 @@
                                            onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
                                            href="<%=request.getContextPath()%>/MenuServlet?accion=borrarHeroe&id=<%=heroe.getIdHeroe()%>">
                                             <i class="bi bi-trash"></i></a>
-                                        <button type="button" class="btn btn-secondary">Añadir objeto</button>
+                                        <a href="<%=request.getContextPath()%>/MenuServlet?accion=listaObjetosDeHeroe&id=<%=heroe.getIdHeroe()%>"><button type="button" class="btn btn-secondary">Lista de objetos</button></a>
                                     </center>
                                 </td>
 

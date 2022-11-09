@@ -125,14 +125,12 @@
             <div class="card"  style="background-color: rgba(240,240,240,0.6)">
                 <div class="card-body">
                     <div>
-                        <h2 style="text-align: center; color: black"><b>LISTA DE OBJETOS</b></h2>
+                        <h2 style="text-align: center; color: black"><b>LISTA DE OBJETOS DE HEROE</b></h2>
                     </div>
                     <br>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a class="btn btn-primary " href="<%=request.getContextPath()%>/MenuServlet?accion=ordenarPorNombre"
-                           role="button">FILTRAR POR NOMBRE</a>
                         <a class="btn btn-danger justify-content-md-end " href="<%=request.getContextPath()%>/MenuServlet?accion=crearObjeto"
-                           role="button">CREAR OBJETO</a>
+                           role="button">AÑADIR OBJETO A HEROE</a>
                     </div>
 
                 </div>
@@ -143,7 +141,7 @@
                             <th style="color:#053934; padding-left: 2rem; text-align: center"><b>NOMBRE</b></th>
                             <th style="color:#053934; padding-left: 2rem; text-align: center"><b>EFECTO/USO</b></th>
                             <th style="color:#053934; padding-left: 2rem; text-align: center"><b>PESO</b></th>
-                            <th style="color:#053934; padding-left: 2rem; text-align: center"><b>HEROES USANDO</b>
+                            <th style="color:#053934; padding-left: 2rem; text-align: center"><b>CANTIDAD</b>
                             </th>
                             <th style="color:#053934; padding-left: 2rem; text-align: center"><b>OPCIONES</b></th>
                         </tr>

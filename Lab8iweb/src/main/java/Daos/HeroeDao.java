@@ -117,6 +117,59 @@ public class HeroeDao {
             pstmt.setInt(7,heroe.getClase());
             pstmt.setInt(8, heroe.getAtaque());
 
+            ArrayList<Heroe> listaHeroes=obtenerlistaHeroes();
+            int i=1;
+            int id=0;
+            for (Heroe heroe1:listaHeroes){
+                if(listaHeroes.size()==i){
+                    id=heroe1.getIdHeroe();
+                }
+                i++;
+            }
+            connection.prepareStatement("INSERT INTO inventario (idinventario) VALUE (?)").setInt(1,(id+1));
+
+            pstmt.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        crearInventario();
+
+    }
+
+    public void crearInventario(){
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "INSERT INTO inventario (idinventario,objeto_idobjeto,heroes_idHeroes,cantidad) VALUES (?,?,?,?)";
+
+        try(Connection connection = DriverManager.getConnection(url,"root","root");
+            PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+
+
+            ArrayList<Heroe> listaHeroes=obtenerlistaHeroes();
+            int i=1;
+            int id=0;
+            for (Heroe heroe1:listaHeroes){
+                if(listaHeroes.size()==i){
+                    id=heroe1.getIdHeroe();
+                }
+                i++;
+            }
+            pstmt.setInt(1,(id));
+            pstmt.setNull(2,Types.INTEGER);
+            pstmt.setNull(3,Types.INTEGER);
+            pstmt.setNull(4,Types.INTEGER);
+
             pstmt.executeUpdate();
 
 
