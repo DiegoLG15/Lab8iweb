@@ -31,10 +31,16 @@ public class Servlet extends HttpServlet {
         Hechizo hechizo= new Hechizo();
         ObjetoDao objetoDao=new ObjetoDao();
         Objeto objeto=new Objeto();
+        Enemigo enemigo = new Enemigo();
+        EnemigoDao enemigoDao= new EnemigoDao();
+
 
         String idHeroe;
+        String idHeroeObjeto;
         String idHechizo;
         String idObjeto;
+        String idEnemigo;
+
 
         switch (accion) {
             case ("MenuPrincipal"):
@@ -73,9 +79,59 @@ public class Servlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
                 break;
             case ("MenuDeEnemigos"):
-
-                view = request.getRequestDispatcher(".jsp");
+                request.setAttribute("listaEnemigo", enemigoDao.obtenerListaEnemigos());
+                view = request.getRequestDispatcher("enemigo.jsp");
                 view.forward(request, response);
+                break;
+
+            case "crearEnemigo":
+                view = request.getRequestDispatcher("añadirEnemigo.jsp");
+                view.forward(request, response);
+                break;
+            case "editarEnemigo":
+                idHeroe = request.getParameter("id");
+                heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroe) );
+                if (enemigo != null) {
+                    request.setAttribute("enemigoEditar", heroe);
+                    view = request.getRequestDispatcher("editarEnemigo.jsp");
+                    view.forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeEnemigos");
+                }
+                break;
+            case ("borrarEnemigo"):
+                idHeroe = request.getParameter("id");
+                heroeDao.borrarHeroe(Integer.parseInt(idHeroe));
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeEnemigos");
+                break;
+            case ("claseEnemigoComun"):
+                request.setAttribute("claseComun", enemigoDao.obtenerClaseMasComun());
+                view = request.getRequestDispatcher("editarEnemigo.jsp");
+                view.forward(request, response);
+                break;
+            case ("ObjetoPerdidoComun"):
+                request.setAttribute("objetoComun", enemigoDao.obtenerObjetoPerdidoMasComun());
+                view = request.getRequestDispatcher("editarEnemigo.jsp");
+                view.forward(request, response);
+                break;
+
+            case ("enemigoSinGenero"):
+                request.setAttribute("enemigoGenero", enemigoDao.obtenerEnemigosSinGenero());
+                view = request.getRequestDispatcher("editarEnemigo.jsp");
+                view.forward(request, response);
+                break;
+
+            case "listaObjetosDeHeroe":
+                idHeroeObjeto = request.getParameter("id");
+                heroe = heroeDao.buscarPorId(Integer.parseInt(idHeroeObjeto));
+
+                if (heroe != null) {
+                    request.setAttribute("hereoeEditar", heroe);
+                    view = request.getRequestDispatcher("inventarioHeroe.jsp");
+                    view.forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHeroes");
+                }
                 break;
             case ("MenuDeHechizos"):
                 request.setAttribute("listaHechizos", hechizoDao.obtenerListaHechizo());
@@ -143,6 +199,8 @@ public class Servlet extends HttpServlet {
         Heroe heroe = new Heroe();
         Hechizo hechizo= new Hechizo();
         Objeto objeto=new Objeto();
+        Enemigo enemigo = new Enemigo();
+        EnemigoDao enemigoDao = new EnemigoDao();
         RequestDispatcher requestDispatcher;
 
 
@@ -366,6 +424,86 @@ public class Servlet extends HttpServlet {
 
                 break;
 
+            case "guardarEnemigo":
+
+                enemigo.setNombre(request.getParameter("nombre"));
+                enemigo.setClase(Integer.parseInt(request.getParameter("clase")));
+                enemigo.setAtaque(Integer.parseInt(request.getParameter("ataque")));
+                enemigo.setExperienciaxDerrota(Integer.parseInt(request.getParameter("experienciaDerrota")));
+                enemigo.setObjetoDejado(request.getParameter("obejtoPerdido"));
+                enemigo.setProbDejarObjeto(Float.parseFloat(request.getParameter("probabilidadDejarObjeto")));
+                if(request.getParameter("genero").equals("Hombre")){
+                    enemigo.setGenero(String.valueOf(1));
+                }else if (request.getParameter("genero").equals("Mujer")){
+                    enemigo.setGenero(String.valueOf(2));
+                }else if (request.getParameter("genero").equals("Otro")){
+                    enemigo.setGenero(String.valueOf(3));
+                }
+
+
+                if(request.getParameter("clase").equals("Dragon")){
+                    enemigo.setClase(1);
+                }else if (request.getParameter("clase").equals("Fantasma")){
+                    enemigo.setClase(2);
+                }else if (request.getParameter("clase").equals("Demonio")){
+                    enemigo.setClase(3);
+                }else if (request.getParameter("clase").equals("Pez")){
+                    enemigo.setClase(4);
+                }else if (request.getParameter("clase").equals("Humano")){
+                    enemigo.setClase(5);
+                }else if (request.getParameter("clase").equals("Bestia")){
+                    enemigo.setClase(6);
+                }else if (request.getParameter("clase").equals("Ave")){
+                    enemigo.setClase(7);
+                }else if (request.getParameter("clase").equals("Otros")){
+                    enemigo.setClase(8);}
+
+                enemigoDao.guardarEnemigo(enemigo);
+
+
+                response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeEnemigos");
+                break;
+
+            case "actualizarEnemigo":
+
+                enemigo.setIdEnemigo(Integer.parseInt(request.getParameter("ID Enemigo"))); /*colocar los parametros en los botones del jsp*/
+                enemigo.setNombre(request.getParameter("nombre"));
+                enemigo.setClase(Integer.parseInt(request.getParameter("clase")));
+                enemigo.setAtaque(Integer.parseInt(request.getParameter("ataque")));
+                enemigo.setExperienciaxDerrota(Integer.parseInt(request.getParameter("experienciaDerrota")));
+                enemigo.setObjetoDejado(request.getParameter("obejtoPerdido"));
+                enemigo.setProbDejarObjeto(Float.parseFloat(request.getParameter("probabilidadDejarObjeto")));
+                if(request.getParameter("genero").equals("Hombre")){
+                    enemigo.setGenero(String.valueOf(1));
+                }else if (request.getParameter("genero").equals("Mujer")){
+                    enemigo.setGenero(String.valueOf(2));
+                }else if (request.getParameter("genero").equals("Otro")){
+                    enemigo.setGenero(String.valueOf(3));
+                }
+
+                if(request.getParameter("clase").equals("Dragon")){
+                    enemigo.setClase(1);
+                }else if (request.getParameter("clase").equals("Fantasma")){
+                    enemigo.setClase(2);
+                }else if (request.getParameter("clase").equals("Demonio")){
+                    enemigo.setClase(3);
+                }else if (request.getParameter("clase").equals("Pez")){
+                    enemigo.setClase(4);
+                }else if (request.getParameter("clase").equals("Humano")){
+                    enemigo.setClase(5);
+                }else if (request.getParameter("clase").equals("Bestia")){
+                    enemigo.setClase(6);
+                }else if (request.getParameter("clase").equals("Ave")){
+                    enemigo.setClase(7);
+                }else if (request.getParameter("clase").equals("Otros")){
+                    enemigo.setClase(8);}
+
+                enemigoDao.actualizarEnemigo(enemigo);
+
+
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeEnemigos");
+
+                break;
 
         }
     }
