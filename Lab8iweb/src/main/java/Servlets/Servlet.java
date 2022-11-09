@@ -143,9 +143,21 @@ public class Servlet extends HttpServlet {
                 view = request.getRequestDispatcher("añadirHechizo.jsp");
                 view.forward(request, response);
                 break;
+            case ("editarHechizo"):
+                idHechizo = request.getParameter("id");
+                hechizo = hechizoDao.buscarPorIdH(Integer.parseInt(idHechizo));
+
+                if (hechizo != null) { //abro el form para editar
+                    request.setAttribute("hechizoEditar", hechizo);
+                    view = request.getRequestDispatcher("editarHechizo.jsp");
+                    view.forward(request, response);
+                } else { //id no encontrado
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
+                }
+                break;
             case ("borrarHechizo"):
                 idHechizo = request.getParameter("id");
-                hechizoDao.borrarHechizo(Integer.parseInt(idHechizo));
+                hechizoDao.borrarHechizosMismaBase(Integer.parseInt(idHechizo));
                 response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
                 break;
             case ("MenuDeObjetos"):
@@ -338,28 +350,40 @@ public class Servlet extends HttpServlet {
 
             case "guardarHechizo":
 
-                String hechizoID = request.getParameter("idHechizo");
+
                 String nombrehechizo = request.getParameter("nombreHechizo");
                 int potencia = Integer.parseInt(request.getParameter("potenciaDeHechizo"));
                 int precision= Integer.parseInt(request.getParameter("precisionDeHechizo"));
                 int nivelAprendizaje = Integer.parseInt(request.getParameter("nivelAprendizaje"));
                 int hechizoBase = Integer.parseInt(request.getParameter("hechizoBase"));
-                String elemento = request.getParameter("elemento");
 
-                Hechizo job = new Hechizo();
-                job.setIdHechizo(Integer.parseInt(hechizoID));
-                job.setNombreHechizo(nombrehechizo);
-                job.setPotenciaDeHechizo(potencia);
+                hechizo.setNombreHechizo(nombrehechizo);
+                hechizo.setPotenciaDeHechizo(potencia);
+                hechizo.setPrecisionDeHechizo(precision);
+                hechizo.setNivelAprendizaje(nivelAprendizaje);
+                hechizo.setHechizoBase(hechizoBase);
 
+                if (request.getParameter("elemento").equals("Fuego")){
+                    hechizo.setIdElemento(1);
+                }else if(request.getParameter("elemento").equals("Tierra")){
+                    hechizo.setIdElemento(2);
+                }else if(request.getParameter("elemento").equals("Agua")){
+                    hechizo.setIdElemento(3);
+                }else if(request.getParameter("elemento").equals("Viento")){
+                    hechizo.setIdElemento(4);
+                }else if(request.getParameter("elemento").equals("Void")){
+                    hechizo.setIdElemento(5);
+                }
 
-                response.sendRedirect(request.getContextPath() + "/");
+                hechizoDao.registrarHechizo(hechizo);
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
                 break;
             case "actualizarHechizo":
                 String hechizoID1 = request.getParameter("idHechizo");
                 String nombrehechizo1 = request.getParameter("nombreHechizo");
-                String potencia1 = request.getParameter("potenciaDeHechizo");
-                String precision1 = request.getParameter("precisionDeHechizo");
-                String nivelAprendiaje1 = request.getParameter("precisionDeHechizo");
+                String potencia1 = request.getParameter("potencia");
+                String precision1 = request.getParameter("precision");
+                String nivelAprendiaje1 = request.getParameter("nivelAprendizaje");
                 String hechizoBase1 = request.getParameter("hechizoBase");
                 String elemento1 = request.getParameter("elemento");
 
@@ -369,14 +393,27 @@ public class Servlet extends HttpServlet {
                     int precision_int = Integer.parseInt(precision1);
                     int nivelAprendizaje_int = Integer.parseInt(nivelAprendiaje1);
                     int hechizoBase_int = Integer.parseInt(hechizoBase1);
-                    hechizoDao.actualizarHechizo(hechizo);
+                    int elemento_int = 0;
+
+                    if(elemento1.equals("Fuego")){
+                        elemento_int = 1;
+                    }else if (elemento1.equals("Tierra")){
+                        elemento_int = 2;
+                    }else if (elemento1.equals("Agua")){
+                        elemento_int = 3;
+                    }else if (elemento1.equals("Viento")){
+                        elemento_int = 4;
+                    } else if (elemento1.equals("Void")){
+                        elemento_int = 5;
+                    }
+
+                    hechizoDao.actualizarHechizo(hechizoID_int,nombrehechizo1,potencia_int,precision_int,nivelAprendizaje_int,hechizoBase_int, elemento_int);
 
                     response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeHechizos");
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/JobServlet?action=editar&id=" + hechizoID1);
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=editarHechizo&id=" + hechizoID1);
                 }
                 break;
-
             case "buscarHeroe":
                 String searchText = request.getParameter("searchText");
                 ArrayList<Heroe> listaHeroe = heroeDao.buscarHeroes(searchText);

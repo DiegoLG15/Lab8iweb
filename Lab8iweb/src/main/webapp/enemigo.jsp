@@ -121,7 +121,7 @@
         <div class="card-body d-flex justify-content-between align-items-center">
           <a href="<=request.getContextPath()%>/MenuServlet?accion=clasesEnemigos"  class="btn btn-danger" >Clases Enemigos</a>
           <h2 style="text-align: center; color: #193532"><b> LISTA DE ENEMIGOS</b> </h2>
-          <a href="<=request.getContextPath()%>/MenuServlet?accion=crearEnemigo" class="btn btn-danger">Crear Enemigo</a>
+          <a href="<%=request.getContextPath()%>/MenuServlet?accion=crearEnemigo" class="btn btn-danger" role="button">Crear Enemigo</a>
         </div>
         <br><br>
         <table class="table table-striped table-hover">

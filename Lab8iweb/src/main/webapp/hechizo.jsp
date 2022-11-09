@@ -119,13 +119,6 @@
                role="button">CREAR HECHIZO</a>
           </div>
           <br>
-          <div>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar"  >
-              <button class="btn btn-outline-light" type="submit" style="color: darkslategray; border:1px solid white">Buscar</button>
-            </form>
-            <br>
-          </div>
           <table class="table table-striped table-hover">
             <thead>
               <tr style="align-content: center">
