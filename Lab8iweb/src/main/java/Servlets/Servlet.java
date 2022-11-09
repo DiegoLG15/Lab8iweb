@@ -99,6 +99,13 @@ public class Servlet extends HttpServlet {
                 view.forward(request, response);
                 break;
 
+            case "ordenarPorNombre":
+
+                request.setAttribute("listaObjetos", objetoDao.obtenerlistaObjetosPorNombre());
+                view = request.getRequestDispatcher("listaObjetosPorNombre.jsp");
+                view.forward(request, response);
+                break;
+
             case ("crearObjeto"):
                 view = request.getRequestDispatcher("añadirObjeto.jsp");
                 view.forward(request, response);
@@ -140,6 +147,7 @@ public class Servlet extends HttpServlet {
 
 
         switch (accion) {
+
 
             case "guardarHeroe":
 

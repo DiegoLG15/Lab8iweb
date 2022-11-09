@@ -128,17 +128,13 @@
                         <h2 style="text-align: center; color: black"><b>LISTA DE OBJETOS</b></h2>
                     </div>
                     <br>
-                    <div>
-                        <form method="post" class="d-flex input-group w-auto" role="search" id="floatingInput" aria-describedby="search-addon" action="<%=request.getContextPath()%>/MenuServlet?accion=buscarHeroe">
-                            <input name="searchText" class="form-control me-2" type="text" placeholder="Buscar nombre del Heroe" aria-label="Search"  >
-                            <button class="btn btn-light" type="submit" style="color: gray; border:1px solid white">Buscar</button>
-                        </form>
-                        <br>
-                    </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a class="btn btn-danger " href="<%=request.getContextPath()%>/MenuServlet?accion=crearObjeto"
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a class="btn btn-primary " href="<%=request.getContextPath()%>/MenuServlet?accion=ordenarPorNombre"
+                           role="button">FILTRAR POR NOMBRE</a>
+                        <a class="btn btn-danger justify-content-md-end " href="<%=request.getContextPath()%>/MenuServlet?accion=crearObjeto"
                            role="button">CREAR OBJETO</a>
                     </div>
+
                 </div>
                 <br>
                 <table class="table table-striped table-hover">
