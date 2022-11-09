@@ -1,6 +1,7 @@
 package Daos;
 
 import Beans.Hechizo;
+import Beans.Heroe;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,9 +21,7 @@ public class HechizoDao {
             Statement stmt = conn.createStatement();
 
             //ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
-            ResultSet rs = stmt.executeQuery( "SELECT idhechizos,nombre,potencia,precisión,nivel_aprendizaje, COALESCE(hechizos_idhechizos, ''), elemento FROM lab8.hechizos h\n" +
-                    "INNER JOIN lab8.elemento el\n" +
-                    "ON h.elemento_idelemento = el.idelemento");
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM lab8.hechizos");
             while (rs.next()) {
                 Hechizo hechizo = new Hechizo();
 
@@ -32,7 +31,7 @@ public class HechizoDao {
                 hechizo.setPrecisionDeHechizo(rs.getInt(  4));
                 hechizo.setNivelAprendizaje(rs.getInt(5));
                 hechizo.setHechizoBase(rs.getInt(6));
-                hechizo.setElemento(rs.getString(7));
+                hechizo.setIdElemento(rs.getInt(7));
 
                 listaHechizos.add(hechizo);
             }
@@ -48,8 +47,8 @@ public class HechizoDao {
     public void registrarHechizo(Hechizo hechizo) {
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "INSERT INTO enemigos (nombre, potencia, precisión, nivel_aprendizaje, hechizos_idhechizos,elemento_idelemento) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lab8.hechizos (nombre, potencia, precisión, nivel_aprendizaje, hechizos_idhechizos,elemento_idelemento) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -59,7 +58,7 @@ public class HechizoDao {
             pstmt.setInt(3, hechizo.getPrecisionDeHechizo());
             pstmt.setInt(4, hechizo.getNivelAprendizaje());
             pstmt.setInt(5, hechizo.getHechizoBase());
-            pstmt.setString(6, hechizo.getElemento());
+            pstmt.setInt(6, hechizo.getIdElemento());
 
             pstmt.executeUpdate();
 
@@ -75,8 +74,7 @@ public class HechizoDao {
         }
 
         String url = "jdbc:mysql://localhost:3306/lab8";
-        String sql = "SELECT idhechizos, hechizos_idhechizos FROM lab8.hechizos;\n" +
-                "DELETE FROM lab8.hechizos WHERE hechizos_idhechizos=?";
+        String sql = "DELETE from lab8.hechizos WHERE idhechizos = ?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -88,27 +86,27 @@ public class HechizoDao {
             throw new RuntimeException(e);
         }
     }
-    public void actualizarHechizo(Hechizo hechizo) {
+    public void actualizarHechizo(int IdHechizo, String NombreHechizo,int PotenciaDeHechizo, int PrecisionDeHechizo, int NivelAprendizaje, int HechizoBase, int IdElemento) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/hr";
-        String sql = "UPDATE jobs SET job_title = ?, min_salary = ?, max_salary = ? WHERE job_id = ?";
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "UPDATE lab8.hechizos SET nombre = ?, potencia = ?, precisión = ?, nivel_aprendizaje = ?, hechizos_idhechizos = ?, elemento_idelemento = ?  WHERE idhechizos = ?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, hechizo.getIdHechizo());
-            pstmt.setString(2, hechizo.getNombreHechizo());
-            pstmt.setInt(3, hechizo.getPotenciaDeHechizo());
-            pstmt.setInt(4, hechizo.getPrecisionDeHechizo());
-            pstmt.setInt(5, hechizo.getNivelAprendizaje());
-            pstmt.setInt(6, hechizo.getHechizoBase());
-            pstmt.setString(7, hechizo.getElemento());
 
+            pstmt.setString(1, NombreHechizo);
+            pstmt.setInt(2, PotenciaDeHechizo);
+            pstmt.setInt(3, PrecisionDeHechizo);
+            pstmt.setInt(4, NivelAprendizaje);
+            pstmt.setInt(5, HechizoBase);
+            pstmt.setInt(6, IdElemento);
+            pstmt.setInt(7, IdHechizo);
 
 
             pstmt.executeUpdate();
@@ -117,8 +115,55 @@ public class HechizoDao {
             throw new RuntimeException(e);
         }
     }
+    public Hechizo buscarPorIdH(int idHechizo){
 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
+        String url = "jdbc:mysql://localhost:3306/lab8";
+        String sql = "SELECT * FROM lab8.hechizos WHERE idHechizos = ?";
+        Hechizo hechizo = null;
 
+        try(Connection conn = DriverManager.getConnection(url, "root", "root");
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            pstmt.setInt(1, idHechizo);
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                if (rs.next()){
+                    hechizo = new Hechizo();
+
+                    hechizo.setIdHechizo(rs.getInt(1));
+                    hechizo.setNombreHechizo(rs.getString(2));
+                    hechizo.setPotenciaDeHechizo(rs.getInt(3));
+                    hechizo.setPrecisionDeHechizo(rs.getInt(  4));
+                    hechizo.setNivelAprendizaje(rs.getInt(5));
+                    hechizo.setHechizoBase(rs.getInt(6));
+                    hechizo.setIdElemento(rs.getInt(7));
+                }
+            }
+
+        }
+        catch (SQLException e){
+            throw new RuntimeException();
+        }
+
+        return hechizo;
+    }
+    public void borrarHechizosMismaBase(int idHechizo){
+
+        ArrayList<Hechizo> listaHechizos=obtenerListaHechizo();
+        System.out.println(idHechizo);
+        for (Hechizo hechizo1:listaHechizos){
+            if(hechizo1.getHechizoBase() == idHechizo){
+                borrarHechizosMismaBase(hechizo1.getIdHechizo());
+            }
+        }
+        borrarHechizo(idHechizo);
+
+    }
 }
+

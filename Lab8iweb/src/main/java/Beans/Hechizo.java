@@ -7,7 +7,7 @@ public class Hechizo {
     private int precisionDeHechizo;
     private int nivelAprendizaje;
     private int hechizoBase;
-    private String elemento;
+    private int idElemento;
 
     public int getIdHechizo() {
         return idHechizo;
@@ -57,11 +57,11 @@ public class Hechizo {
         this.hechizoBase = hechizoBase;
     }
 
-    public String getElemento() {
-        return elemento;
+    public int getIdElemento() {
+        return idElemento;
     }
 
-    public void setElemento(String elemento) {
-        this.elemento = elemento;
+    public void setIdElemento(int idElemento) {
+        this.idElemento = idElemento;
     }
 }

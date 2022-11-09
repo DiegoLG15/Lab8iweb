@@ -152,7 +152,15 @@
                   <%=hechizo.getNombreHechizo()%>
                 </td>
                 <td>
-                  <%=hechizo.getElemento()%>
+
+                  <% if (hechizo.getIdElemento()==1){%>
+                  Fuego <%} else if (hechizo.getIdElemento()==2) {%>
+                  Tierra <%} else if (hechizo.getIdElemento()==3) {%>
+                  Agua <%} else if (hechizo.getIdElemento()==4) {%>
+                  Viento <%} else if (hechizo.getIdElemento()==5) {%>
+                  Void
+                  <%}%>
+
                 </td>
                 <td>
                   <%=hechizo.getPotenciaDeHechizo()%>
@@ -169,7 +177,7 @@
                 <td>
 
                   <a type="button" class="btn btn-primary"
-                     href="<%=request.getContextPath()%>/MenuServlet?accion=editar&id=<%=hechizo.getIdHechizo()%>">
+                     href="<%=request.getContextPath()%>/MenuServlet?accion=editarHechizo&id=<%=hechizo.getIdHechizo()%>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                          fill="currentColor"
                          class="bi bi-pencil" viewBox="0 0 16 16">
