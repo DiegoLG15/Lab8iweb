@@ -4,6 +4,7 @@ import Beans.Enemigo;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class EnemigoDao {
     public ArrayList<Enemigo> obtenerListaEnemigos() {
@@ -49,7 +50,121 @@ public class EnemigoDao {
         return listaEnemigos;
 
     }
-    public void registrarEnemigo(Enemigo enemigo) {
+    public  String obtenerClaseMasComun(){
+        String clase = " ";
+        ArrayList<Integer> cantClase = new ArrayList<>();
+        ArrayList< String > nombreClase = new ArrayList<>();
+        try {
+            String user = "root";
+            String pass = "root";
+            String url = "jdbc:mysql://localhost:3306/lab8";
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            Statement stmt = conn.createStatement();
+
+            //ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM lab8.enemigos e\n" +
+                    "INNER JOIN lab8.clase_enemigos class\n" +
+                    "ON e.clase_enemigos_idclase_enemigos = class.idclase_enemigos\n" +
+                    "LEFT JOIN lab8.objeto o\n" +
+                    "ON e.objeto_idobjeto = o.idobjeto\n" +
+                    "LEFT JOIN lab8.genero g\n" +
+                    "ON e.genero_idgenero = g.idgenero");
+            while (rs.next()) {
+                Enemigo enemigo = new Enemigo();
+                enemigo.setClase(rs.getInt("clase_enemigos_idclase_enemigos"));
+                cantClase.set( enemigo.getClase(), cantClase.get(enemigo.getClase()) + 1);
+                nombreClase.set( enemigo.getClase(), rs.getString( "clase_enemigos"));
+            }
+
+            int obj = Collections.max(cantClase);
+            int index = cantClase.indexOf(obj);
+            clase = clase + nombreClase.get(index);
+
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clase;
+
+    }
+    public  String obtenerObjetoPerdidoMasComun(){
+        String objeto = " ";
+        ArrayList<Integer> cantObjetoPerdido = new ArrayList<>();
+        ArrayList< String > nombreObjetoPerdido = new ArrayList<>();
+        try {
+            String user = "root";
+            String pass = "root";
+            String url = "jdbc:mysql://localhost:3306/lab8";
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            Statement stmt = conn.createStatement();
+
+            //ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM lab8.enemigos e\n" +
+                    "INNER JOIN lab8.clase_enemigos class\n" +
+                    "ON e.clase_enemigos_idclase_enemigos = class.idclase_enemigos\n" +
+                    "LEFT JOIN lab8.objeto o\n" +
+                    "ON e.objeto_idobjeto = o.idobjeto\n" +
+                    "LEFT JOIN lab8.genero g\n" +
+                    "ON e.genero_idgenero = g.idgenero");
+            while (rs.next()) {
+                Enemigo enemigo = new Enemigo();
+                cantObjetoPerdido.set( rs.getInt("objeto_idobjeto"), cantObjetoPerdido.get(rs.getInt("objeto_idobjeto")) + 1);
+                nombreObjetoPerdido.set(rs.getInt("objeto_idobjeto") , rs.getString( "objeto_x_derrota"));
+            }
+
+            int obj = Collections.max(cantObjetoPerdido);
+            int index = cantObjetoPerdido.indexOf(obj);
+            objeto = objeto + nombreObjetoPerdido.get(index);
+
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return objeto;
+
+    }
+    public  double obtenerEnemigosSinGenero(){
+        double cantEnemigosSinGenero = 0;
+        double cantEnemigosTotal = 0;
+        try {
+            String user = "root";
+            String pass = "root";
+            String url = "jdbc:mysql://localhost:3306/lab8";
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            Statement stmt = conn.createStatement();
+
+            //ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios");
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM lab8.enemigos e\n" +
+                    "INNER JOIN lab8.clase_enemigos class\n" +
+                    "ON e.clase_enemigos_idclase_enemigos = class.idclase_enemigos\n" +
+                    "LEFT JOIN lab8.objeto o\n" +
+                    "ON e.objeto_idobjeto = o.idobjeto\n" +
+                    "LEFT JOIN lab8.genero g\n" +
+                    "ON e.genero_idgenero = g.idgenero");
+            while (rs.next()) {
+                String resultado = rs.getString( "genero");
+                if(resultado=="-"){
+                    cantEnemigosSinGenero++;
+                }
+                cantEnemigosTotal++;
+                }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return (cantEnemigosSinGenero/cantEnemigosTotal)*100;
+
+    }
+    public void guardarEnemigo(Enemigo enemigo) {
 
         String url = "jdbc:mysql://localhost:3306/lab8";
         String sql = "INSERT INTO enemigos (nombre, ataque, exp_x_derrota, genero_idgenero, objeto_idobjeto , clase_enemigos_idclase_enemigos, probabilidad_x_objeto) "
@@ -72,7 +187,7 @@ public class EnemigoDao {
             ex.printStackTrace();
         }
     }
-    public void borrar(int idEnemigo) {
+    public void borrarEnemigo(int idEnemigo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -92,7 +207,7 @@ public class EnemigoDao {
             throw new RuntimeException(e);
         }
     }
-    public void actualizar(Enemigo enemigo) {
+    public void actualizarEnemigo(Enemigo enemigo) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
