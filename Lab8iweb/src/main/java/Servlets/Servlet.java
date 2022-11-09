@@ -43,6 +43,11 @@ public class Servlet extends HttpServlet {
 
 
         switch (accion) {
+            case ("SubMenuClaseElementos"):
+                request.setAttribute("listaClase", claseEnemigoDao.obtenerListaClases());
+                view = request.getRequestDispatcher("claseEnemigo.jsp");
+                view.forward(request, response);
+                break;    
             case ("MenuPrincipal"):
                 view = request.getRequestDispatcher("index.jsp");
                 view.forward(request, response);
