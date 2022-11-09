@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -195,6 +196,12 @@ public class Servlet extends HttpServlet {
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
+                if (heroe.getPareja()>0){
+                    heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
+                }else {
+                    heroe.setPareja(Types.INTEGER);
+                }
+
 
 
                 heroeDao.guardarHeroe(heroe);
@@ -245,6 +252,12 @@ public class Servlet extends HttpServlet {
                 heroe.setNivel(Integer.parseInt(request.getParameter("nivel")));
                 heroe.setAtaque(Integer.parseInt(request.getParameter("ataque")));
                 heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
+
+                if (heroe.getPareja()>0){
+                    heroe.setPareja(Integer.parseInt(request.getParameter("pareja")));
+                }else {
+                    heroe.setPareja(Types.INTEGER);
+                }
 
 
                 heroeDao.actualizarParejaHeroe(heroe.getIdHeroe(),heroe.getPareja());
@@ -309,13 +322,28 @@ public class Servlet extends HttpServlet {
             case "guardarObjeto":
 
                 objeto.setObjeto(request.getParameter("Nombre"));
-                objeto.setDescripcion(request.getParameter("Efecto/Uso"));
-                objeto.setPeso(Double.parseDouble(request.getParameter("Peso")));
 
-                objetoDao.guardarObjeto(objeto);
+                ArrayList<Objeto> listaObjetos=objetoDao.obtenerlistaObjetos();
+                for(Objeto objeto1: listaObjetos){
 
-                response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeObjetos");
+                    if (objeto1.getObjeto().toLowerCase().equals(objeto.getObjeto().toLowerCase())){
+                        response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeObjetos");
+                        break;
+
+                    }else{
+
+                        objeto.setDescripcion(request.getParameter("Efecto/Uso"));
+                        objeto.setPeso(Double.parseDouble(request.getParameter("Peso")));
+
+                        objetoDao.guardarObjeto(objeto);
+
+                        response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeObjetos");
+                        break;
+                    }
+
+                }
                 break;
+
 
             case "actualizarObjeto":
 

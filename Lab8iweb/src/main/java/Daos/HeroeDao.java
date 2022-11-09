@@ -108,7 +108,11 @@ public class HeroeDao {
             pstmt.setInt(2,heroe.getEdad());
             pstmt.setInt(3,heroe.getNivel());
             pstmt.setDouble(4,heroe.getPuntosDeExperiencia());
-            pstmt.setInt(5,heroe.getPareja());
+            if (heroe.getPareja()==Types.INTEGER){
+                pstmt.setNull(5,heroe.getPareja());
+            }else{
+                pstmt.setInt(5,heroe.getPareja());
+            }
             pstmt.setInt(6,heroe.getGenero());
             pstmt.setInt(7,heroe.getClase());
             pstmt.setInt(8, heroe.getAtaque());
@@ -122,7 +126,7 @@ public class HeroeDao {
 
     }
 
-    public void actualizarParejaHeroe(int idHeroe,int parejaId){
+    public void actualizarParejaHeroe(int idHeroeCreado,int parejaIdDeHeroeCreado){
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -139,13 +143,17 @@ public class HeroeDao {
             ArrayList<Heroe> listaHeroes=obtenerlistaHeroes();
 
             for (Heroe heroe:listaHeroes){
-                if (heroe.getIdHeroe()==parejaId){
-                    heroe.setPareja(idHeroe);
-                    pstmt.setInt(1,idHeroe);
-                    pstmt.setInt(2,parejaId);
-                } else if (heroe.getIdHeroe()==0) {
+                if (heroe.getIdHeroe()==parejaIdDeHeroeCreado){
+                    //Hacer excepcion para 0
+                    heroe.setPareja(idHeroeCreado);
+                    pstmt.setInt(1,idHeroeCreado);
+                    pstmt.setInt(2,parejaIdDeHeroeCreado);
+                } else if (parejaIdDeHeroeCreado==Types.INTEGER) {
+                    heroe.setPareja(idHeroeCreado);
                     pstmt.setNull(1,Types.INTEGER);
-                    pstmt.setInt(2, parejaId);
+                    pstmt.setInt(2, parejaIdDeHeroeCreado);
+                    pstmt.setNull(1,Types.INTEGER);
+                    pstmt.setInt(2, idHeroeCreado);
                 }
             }
 
@@ -239,7 +247,11 @@ public class HeroeDao {
             pstmt.setInt(3,heroe.getEdad());
             pstmt.setInt(4,heroe.getNivel());
             pstmt.setDouble(5,heroe.getPuntosDeExperiencia());
-            pstmt.setInt(6,heroe.getPareja());
+            if (heroe.getPareja()==Types.INTEGER){
+                pstmt.setNull(6,heroe.getPareja());
+            }else{
+                pstmt.setInt(6,heroe.getPareja());
+            }
             pstmt.setInt(7,heroe.getGenero());
             pstmt.setInt(8,heroe.getClase());
             pstmt.setInt(9, heroe.getAtaque());

@@ -142,6 +142,10 @@
                                             <button class="btn btn-danger" type="submit">Crear</button>
                                         </div>
                                     </ul>
+
+                                    <div
+                                            style="color: darkblue" class="form-label"><b>NOTA: Si crea un objeto con el mismo nombre, no se creará y será redirigido a la lista de objetos.</b>
+                                    </div>
                                 </td>
                             </form>
                         </div>
