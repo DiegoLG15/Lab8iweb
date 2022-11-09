@@ -10,7 +10,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%
-  ArrayList<Enemigo> listaEnemigos = (ArrayList<Enemigo>) request.getAttribute("listaEnemigos");
+  ArrayList<Enemigo> listaEnemigos = (ArrayList<Enemigo>) request.getAttribute("listaEnemigo");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +57,7 @@
       </div>
     </div>
   </header>
+  <br><br>
   <div class="boxed-page">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -114,13 +115,13 @@
     </nav>
   </div>
   <br><br><br>
-  <div class="d-flex ">
+  <div class="d-flex justify-content-center">
     <div class="card"  style="background-color: rgba(240,240,240,0.6)">
       <div class="card-body">
         <div class="card-body d-flex justify-content-between align-items-center">
           <a href="<=request.getContextPath()%>/MenuServlet?accion=clasesEnemigos"  class="btn btn-danger" >Clases Enemigos</a>
           <h2 style="text-align: center; color: #193532"><b> LISTA DE ENEMIGOS</b> </h2>
-          <a href="<=request.getContextPath()%>/MenuServlet?accion=anadirEnemigo" class="btn btn-danger">Crear Enemigo</a>
+          <a href="<=request.getContextPath()%>/MenuServlet?accion=crearEnemigo" class="btn btn-danger">Crear Enemigo</a>
         </div>
         <br><br>
         <table class="table table-striped table-hover">
@@ -147,17 +148,15 @@
             </td>
             <td style="padding-left: 2rem; text-align: center">
               <% if (enemigo.getClase()==1){%>
-              Normal <%} else if (enemigo.getClase()==2) {%>
-              Sayayin <%} else if (enemigo.getClase()==3) {%>
-              Hechicero <%} else if (enemigo.getClase()==4) {%>
-              Androide <%} else if (enemigo.getClase()==5) {%>
-              Namekusein <%} else if (enemigo.getClase()==6) {%>
-              Guerrero <%} else if (enemigo.getClase()==7) {%>
-              Zombie <%} else if (enemigo.getClase()==8) {%>
-              Ninja <%} else if (enemigo.getClase()==9) {%>
-              Fantasma <%} else if (enemigo.getClase()==10) {%>
-              Robot
-              <%}%>
+              Dragon <%} else if (enemigo.getClase()==2) {%>
+              Fantasma <%} else if (enemigo.getClase()==3) {%>
+              Demonio <%} else if (enemigo.getClase()==4) {%>
+              Pez <%} else if (enemigo.getClase()==5) {%>
+              Humano <%} else if (enemigo.getClase()==6) {%>
+              Bestia <%} else if (enemigo.getClase()==7) {%>
+              Ave <%} else if (enemigo.getClase()==8) {%>
+              Otros <%}
+              %>
             </td >
             <td style="padding-left: 2rem; text-align: center">
               <%=enemigo.getAtaque()%>
@@ -172,11 +171,10 @@
               <%=enemigo.getProbDejarObjeto()%>
             </td>
             <td style="padding-left: 2rem; text-align: center">
-              <% if (enemigo.getGenero()==1){%>
-              Hombre <%} else if (enemigo.getGenero()==2) {%>
-              Mujer <%} else if (enemigo.getGenero()==3) {%>
-              Otro
-
+              <% if (enemigo.getGenero()=="H"){%>Hombre
+              <%} else if (enemigo.getGenero()=="M") {%>Mujer
+              <%} else if (enemigo.getGenero()=="O") {%>Otro
+              <%} else if (enemigo.getGenero()=="-") {%>-
               <%}%>
             </td>
 
@@ -198,8 +196,8 @@
 
           </tr>
           <%
+          }
 
-            }
           %>
 
         </table>
@@ -207,9 +205,6 @@
     </div>
   </div>
 
-  <br>
-  <a class="btn btn-primary" href="<=request.getContextPath()%>/MenuServlet?accion=index" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-  <br><br>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
