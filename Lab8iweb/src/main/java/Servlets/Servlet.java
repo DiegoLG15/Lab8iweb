@@ -81,10 +81,7 @@ public class Servlet extends HttpServlet {
                 view = request.getRequestDispatcher("hechizo.jsp");
                 view.forward(request, response);
                 break;
-            case ("CatalogoDeObjetos"):
-                view = request.getRequestDispatcher("Obj.jsp");
-                view.forward(request, response);
-                break;
+
             case ("crearHechizo"):
                 view = request.getRequestDispatcher("añadirHechizo.jsp");
                 view.forward(request, response);
@@ -101,6 +98,30 @@ public class Servlet extends HttpServlet {
                 view.forward(request, response);
                 break;
 
+            case ("crearObjeto"):
+                view = request.getRequestDispatcher("añadirObjeto.jsp");
+                view.forward(request, response);
+                break;
+            case "editarObjeto":
+                idObjeto = request.getParameter("id");
+                objeto = objetoDao.buscarPorId(Integer.parseInt(idObjeto) );
+
+
+                if (objeto != null) {
+                    request.setAttribute("objetoEditar", objeto);
+                    view = request.getRequestDispatcher("editarObjeto.jsp");
+                    view.forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeObjetos");
+                }
+                break;
+
+            case ("borrarObjeto"):
+                idObjeto = request.getParameter("id");
+                objetoDao.borrarObjeto(Integer.parseInt(idObjeto));
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeObjetos");
+                break;
+
         }
     }
 
@@ -109,10 +130,13 @@ public class Servlet extends HttpServlet {
 
         String accion = request.getParameter("accion");
         HeroeDao heroeDao = new HeroeDao();
-        Heroe heroe = new Heroe();
-        RequestDispatcher requestDispatcher;
         HechizoDao hechizoDao = new HechizoDao();
+        ObjetoDao objetoDao=new ObjetoDao();
+        Heroe heroe = new Heroe();
         Hechizo hechizo= new Hechizo();
+        Objeto objeto=new Objeto();
+        RequestDispatcher requestDispatcher;
+
 
         switch (accion) {
 
@@ -280,6 +304,30 @@ public class Servlet extends HttpServlet {
                 request.setAttribute("listaHeroes", listaHeroe);
                 requestDispatcher = request.getRequestDispatcher("heroe.jsp");
                 requestDispatcher.forward(request, response);
+                break;
+
+            case "guardarObjeto":
+
+                objeto.setObjeto(request.getParameter("Nombre"));
+                objeto.setDescripcion(request.getParameter("Efecto/Uso"));
+                objeto.setPeso(Double.parseDouble(request.getParameter("Peso")));
+
+                objetoDao.guardarObjeto(objeto);
+
+                response.sendRedirect(request.getContextPath()+"/MenuServlet?accion=MenuDeObjetos");
+                break;
+
+            case "actualizarObjeto":
+
+                objeto.setIdobjeto(Integer.parseInt(request.getParameter("ID Objeto")));
+                objeto.setObjeto(request.getParameter("Nombre")); /*colocar los parametros en los botones del jsp*/
+                objeto.setDescripcion(request.getParameter("Efecto/Uso"));
+                objeto.setPeso(Double.parseDouble(request.getParameter("Peso")));
+
+                objetoDao.actualizarObjeto(objeto);
+
+                response.sendRedirect(request.getContextPath() + "/MenuServlet?accion=MenuDeObjetos");
+
                 break;
 
 
