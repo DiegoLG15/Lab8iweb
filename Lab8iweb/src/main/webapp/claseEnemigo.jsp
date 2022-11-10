@@ -6,6 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import=Bean.ClaseEnemigos" %>
+<%@ page import="Bean.ElementoClase" %>
+<!DOCTYPE html>
+<html lang="en">
+  <%
+ArrayList<ClaseEnemigos> listaclases = (ArrayList<ClaseEnemigos>) request.getAttribute("listaClases");
+    %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +31,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <script src="https://kit.fontawesome.com/600382161a.js" crossorigin="anonymous"></script>
-  <title>Menu Enemigo</title>
+  <title>Sub Menu Clases</title>
   <style>
     body {
       background: url(https://img.freepik.com/premium-photo/unicorn-background-with-rainbow-sky-fantasy-colorful-space-galaxy-illustration_71374-1570.jpg?w=2000);
@@ -51,7 +59,10 @@
     </div>
   </div>
 </header>
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 <div class="boxed-page">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
@@ -123,21 +134,19 @@
       </thead>
       <tbody>
         <%
-
-        for (Enemigo enemigo : listaEnemigos) {
+        for(ClaseEnemigos claseEnemigo : listaclases) {
         %>
       <tr style="align-content: center">
         <td style="padding-left: 2rem; text-align: center">
-          <%=enemigo.getIdClase()%>
+          <%=claseEnemigo.getIdClase()%>
         </td>
 
         <td style="padding-left: 2rem; text-align: center">
-          <%=enemigo.getNombre()%>
+          <%=claseEnemigo.getNombre()%>
         </td>
-
         <td >
           <center>
-            <a class="btn btn-primary" href="<=request.getContextPath()%>/MenuServlet?accion=editarClase" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;">Mas </a>
+            <a class="btn btn-primary" href="<=request.getContextPath()%>/MenuServlet?accion=editarClases" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;">Mas </a>
           </center>
         </td>
       </tr>
